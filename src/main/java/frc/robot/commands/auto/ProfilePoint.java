@@ -7,9 +7,6 @@
 
 package frc.robot.commands.auto;
 
-/**
- * Add your docs here.
- */
 public class ProfilePoint {
 
 	private double pos; // position in inches

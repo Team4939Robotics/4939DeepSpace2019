@@ -11,6 +11,7 @@ package frc.robot.commands.auto;
  * Add your docs here.
  */
 public class ProfilePoint {
+
 	private double pos; // position in inches
 	private double vel; // velocity in feet/s
 	private double acc; // acc in ft/s^2
@@ -35,5 +36,4 @@ public class ProfilePoint {
 	public double getAcc() {
 		return acc;
 	}
-}
 }

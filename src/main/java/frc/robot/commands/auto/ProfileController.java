@@ -9,9 +9,6 @@ package frc.robot.commands.auto;
 
 import frc.robot.NumberConstants;
 
-/**
- * Add your docs here.
- */
 public class ProfileController {
     //proportional and derivative constants for position and velocity respectively
 	private static double kP;
@@ -53,6 +50,7 @@ public class ProfileController {
 		//save previous position error for future calculations
 		prevPosError = posError;
 		
-		return output;
+		return  output;
 	}
 }
+

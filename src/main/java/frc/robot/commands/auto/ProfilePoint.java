@@ -12,13 +12,14 @@ public class ProfilePoint {
 	private double pos; // position in inches
 	private double vel; // velocity in feet/s
 	private double acc; // acc in ft/s^2
-	
+	public double deltaTime; // change in time for trajectory (motion profiling)
 
-	// trajectory point with pos, vel, acc, time and intake boolean
-	public ProfilePoint(double pos, double vel, double acc, double time) {
+	// trajectory point with pos, vel, acc, deltaTime and intake boolean
+	public ProfilePoint(double pos, double vel, double acc, double deltaTime) {
 		this.pos = pos;
 		this.vel = vel;
 		this.acc = acc;
+		this.deltaTime; 
 
 	}
 
@@ -32,5 +33,9 @@ public class ProfilePoint {
 
 	public double getAcc() {
 		return acc;
+	}
+	public double getdeltaTime(startTime, endTime){
+		 deltaTime = endTime - startTime
+		 return deltaTime;
 	}
 }

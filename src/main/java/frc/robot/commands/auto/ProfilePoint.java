@@ -15,11 +15,10 @@ public class ProfilePoint {
 	
 
 	// trajectory point with pos, vel, acc, time and intake boolean
-	public ProfilePoint(double pos, double vel, double acc, double time) {
+	public ProfilePoint(double pos, double vel, double acc) {
 		this.pos = pos;
 		this.vel = vel;
 		this.acc = acc;
-
 	}
 
 	public double getPos() {

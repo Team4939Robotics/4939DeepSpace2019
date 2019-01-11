@@ -9,8 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FollowTrajectory extends Command {
-  public FollowTrajectory() {
+public class FollowProfile extends Command {
+  private Trajectory trajectory;
+  public FollowProfile() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -18,6 +19,7 @@ public class FollowTrajectory extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.DriveBase.resetEncoders();
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -14,10 +14,10 @@ package frc.robot;
  * floating around.
  */
 public enum RobotMap {
-	LEFT_FRONT(1),
-	LEFT_BACK(2),
-	RIGHT_FRONT(3),
-	RIGHT_BACK(4),
+	LEFT_FRONT(3),
+	LEFT_BACK(1),
+	RIGHT_FRONT(4),
+	RIGHT_BACK(2),
 	
 	LEFT_DRIVE_ENCODER_A(1),
 	LEFT_DRIVE_ENCODER_B(2),

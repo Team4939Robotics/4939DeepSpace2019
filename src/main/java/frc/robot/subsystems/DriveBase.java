@@ -29,6 +29,8 @@ public class DriveBase extends Subsystem {
 
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
+
+  public PIDController gyroPID;
   
   public DriveBase() {
     try{

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.RobotMap;
+import frc.robot.NumberConstants;
 import frc.robot.commands.TankDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -30,7 +31,7 @@ public class DriveBase extends Subsystem {
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
 
-  public PIDController gyroPID;
+  public PIDController gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
   
   public DriveBase() {
     try{
@@ -53,6 +54,17 @@ public class DriveBase extends Subsystem {
   public void runRightSideDrive(double rightDriveStick) {
     rightDriveFront.set(rightDriveStick);
     rightDriveBack.set(rightDriveStick);
+  }
+
+  //
+  //Turning using gyro
+  //
+  public void turnDrive(double setAngle, double speed, double epsilon){
+    double angle = gyroPID.calcPID(setAngle, angle(), epsilon);
+    
+    //sides turning opposite directions goes forward; same direction turns
+    runLeftSideDrive(angle*speed); 
+    runRightSideDrive(angle*speed);
   }
   
   //
@@ -83,6 +95,14 @@ public class DriveBase extends Subsystem {
   
   public double getRightEncoderDist() {
     return rightDriveEncoder.getDistance();
+  }
+
+  public double getLeftEncoderRate(){
+    return leftDriveEncoder.getRate();
+  }
+
+  public double getRightEncoderRate(){
+    return rightDriveEncoder.getRate();
   }
   
   public void resetEncoders() {

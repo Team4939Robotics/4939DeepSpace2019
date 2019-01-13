@@ -29,4 +29,9 @@ public class NumberConstants {
 	//controller constants
 	public static final double kP = 0.01;
 	public static final double kD = 0.1;
+
+	//gyro PID constant
+	public static final double gyroKP = 0.0;
+	public static final double gyroKI = 0.0;
+	public static final double gyroKD = 0.0;
 }

@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import com.frc.robot;
-import frc.ProfilePoint;
+import frc.robot.Robot;
+import frc.robot.commands.auto.*;
 
 public class FollowProfile extends Command {
   private ProfilePoint profile;
@@ -26,8 +26,8 @@ public class FollowProfile extends Command {
     double velocity = profile.getVel();
     double acceleration = profile.getAcc();
 
-    double currentLeftPos = Robot.dt.getLeftEncoderDist;
-    double currentRightPos = Robot.dt.getRightEncoderDist;
+    double currentLeftPos = Robot.dt.getLeftEncoderDist();
+    double currentRightPos = Robot.dt.getRightEncoderDist();
 
     Robot.dt.runLeftDrive(ProfileController.output(leftPos, leftVel, leftAcc, currentLeftPos));
     Robot.dt.runRightDrive(ProfileController.output(rightPos, rightVel, rightAcc, currentRightPos));

@@ -1,22 +1,29 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.commands.auto.*;
+import com.frc.Robot;
+import com.frc.robot.commands.auto;
+import edu.wpi.first.wpilibj.Timer;
 
 public class FollowProfile extends Command {
   private ProfilePoint profile;
-  
-  public FollowProfile() {
-    requires(Robot.dt);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  private int index = 0;
+  private double segmentTime;
+
+  public FollowProfile(Trajectory auto){
+    profile = auto;
+    segmentTime = profile.deltaT();
+
+    requires (Robot.dt);
   }
+  
+  
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     Robot.dt.resetEncoders();
+    timer.start;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,12 +38,17 @@ public class FollowProfile extends Command {
 
     Robot.dt.runLeftDrive(ProfileController.output(leftPos, leftVel, leftAcc, currentLeftPos));
     Robot.dt.runRightDrive(ProfileController.output(rightPos, rightVel, rightAcc, currentRightPos));
+
+    if (timer.get() >= segmentTime) {
+    		timer.reset();
+    		index++;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-   if (index < profile.getProfile().length)
+   if (index < profile.Trajectory.length())
         	return false;
         else
         	return true;

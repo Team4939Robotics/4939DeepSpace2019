@@ -26,6 +26,7 @@ public class NumberConstants {
 	
 	//control loop
 	public static final double LOOPER_PERIOD = 0.010; //10 ms
+	public static final double deltaT = 0.020;
 	
 	//controller constants
 	public static final double kP = 0.01;

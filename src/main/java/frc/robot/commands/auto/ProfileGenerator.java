@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.utilities;
+package frc.robot.commands.auto;
 
 
 import java.util.ArrayList;
@@ -14,7 +14,12 @@ import frc.robot.commands.auto.ProfilePoint;
 import frc.robot.NumberConstants;
 
 public class ProfileGenerator {
-    public ArrayList<ProfilePoint> GenerateProfile(double distance, double deltat, double maxV, double maxA){
+
+    private double maxV = NumberConstants.TOP_SPEED;
+    private double maxA = NumberConstants.MAX_ACCELERATION;
+    private double deltaT = NumberConstants.deltaT;
+
+    public ArrayList<ProfilePoint> GenerateProfile(double distance){
         
         ArrayList<ProfilePoint> trajectory = new ArrayList<ProfilePoint>();
         double triangleTime = maxV/maxA;
@@ -42,7 +47,7 @@ public class ProfileGenerator {
                 double pos = triangleDist + rectDist + maxV*(time-triangleTime-rectTime) - 0.5*maxA*Math.pow((time - triangleTime - rectTime),2);
                 trajectory.add(new ProfilePoint(pos, vel, acc));
             }
-            time += deltat;
+            time += deltaT;
         }
         return trajectory;
     }

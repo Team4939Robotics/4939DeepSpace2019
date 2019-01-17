@@ -1,18 +1,17 @@
-package frc.robot.commands;
+package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
-import com.frc.Robot;
-import com.frc.robot.commands.auto;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
 public class FollowProfile extends Command {
-  private ProfilePoint profile;
+  
+  private Trajectory profile;
   private int index = 0;
-  private double segmentTime;
+  Timer timer = new Timer();
 
   public FollowProfile(Trajectory auto){
     profile = auto;
-    segmentTime = profile.deltaT();
 
     requires (Robot.dt);
   }
@@ -23,23 +22,23 @@ public class FollowProfile extends Command {
   @Override
   protected void initialize() {
     Robot.dt.resetEncoders();
-    timer.start;
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double position = profile.getPos(); //might need to reference index
-    double velocity = profile.getVel();
-    double acceleration = profile.getAcc();
+    double position = profile.point(index).getPos();
+    double velocity = profile.point(index).getVel();
+    double acceleration = profile.point(index).getAcc();
 
     double currentLeftPos = Robot.dt.getLeftEncoderDist();
     double currentRightPos = Robot.dt.getRightEncoderDist();
 
-    Robot.dt.runLeftDrive(ProfileController.output(leftPos, leftVel, leftAcc, currentLeftPos));
-    Robot.dt.runRightDrive(ProfileController.output(rightPos, rightVel, rightAcc, currentRightPos));
+    Robot.dt.runLeftSideDrive(ProfileController.output(position, velocity, acceleration, currentLeftPos));
+    Robot.dt.runRightSideDrive(ProfileController.output(position, velocity, acceleration, currentRightPos));
 
-    if (timer.get() >= segmentTime) {
+    if (timer.get() >= profile.deltaT()) {
     		timer.reset();
     		index++;
     }
@@ -48,7 +47,7 @@ public class FollowProfile extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-   if (index < profile.Trajectory.length())
+   if (index < profile.length())
         	return false;
         else
         	return true;

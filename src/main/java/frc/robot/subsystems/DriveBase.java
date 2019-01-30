@@ -22,8 +22,10 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveBase extends Subsystem {
   
   public static WPI_TalonSRX leftDriveFront = new WPI_TalonSRX(RobotMap.LEFT_FRONT.value);
+  public static WPI_TalonSRX leftDriveMiddle = new WPI_TalonSRX(RobotMap.LEFT_MIDDLE.value);
   public static WPI_TalonSRX leftDriveBack = new WPI_TalonSRX(RobotMap.LEFT_BACK.value);
   public static WPI_TalonSRX rightDriveFront = new WPI_TalonSRX(RobotMap.RIGHT_FRONT.value);
+  public static WPI_TalonSRX rightDriveMiddle = new WPI_TalonSRX(RobotMap.RIGHT_MIDDLE.value);
   public static WPI_TalonSRX rightDriveBack = new WPI_TalonSRX(RobotMap.RIGHT_BACK.value);
     
   private AHRS ahrs;
@@ -56,10 +58,12 @@ public class DriveBase extends Subsystem {
   
   public void runLeftSideDrive(double leftDriveStick) {
     leftDriveFront.set(leftDriveStick);
+    leftDriveMiddle.set(leftDriveStick);
     leftDriveBack.set(leftDriveStick);
   }
   public void runRightSideDrive(double rightDriveStick) {
     rightDriveFront.set(rightDriveStick);
+    rightDriveMiddle.set(rightDriveStick);
     rightDriveBack.set(rightDriveStick);
   }
 

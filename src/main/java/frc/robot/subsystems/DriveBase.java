@@ -31,7 +31,7 @@ public class DriveBase extends Subsystem {
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
 
-  public PIDController gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
+  public PIDController gyroPID;
   
   public DriveBase() {
     try{
@@ -40,11 +40,18 @@ public class DriveBase extends Subsystem {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     }
     
+    //Initialize Encoders
     leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
-			  RobotMap.LEFT_DRIVE_ENCODER_B.value);
+        RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+
+    leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+
     rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
-			  RobotMap.RIGHT_DRIVE_ENCODER_B.value);
+        RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+        
+    rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
     
+    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
   }
   
   public void runLeftSideDrive(double leftDriveStick) {

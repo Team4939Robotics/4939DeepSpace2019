@@ -19,9 +19,12 @@ public class NumberConstants {
 	public static final double WHEEL_RADIUS = 2; // radius of drive wheel in inches
 	public static final double MASS = 80; // mass of robot in pounds
 	public static final double MAX_ACCELERATION = MAX_TORQUE / (WHEEL_RADIUS * MASS); // T/dm = a
-	public static final int DEFAULT_SEGMENT_RESOLUTION = 1000; //# of vel points per segment
 	
 	//encoder conversions
+	public static final int drivePulsePerRotation = 1024;
+	public static final double driveGearRatio = 1/1;
+	public static final double driveEncoderPulsePerRot = drivePulsePerRotation*driveGearRatio; //pulse per rotation * gear ratio
+	public static final double driveEncoderDistPerTick =(Math.PI*2*WHEEL_RADIUS)/driveEncoderPulsePerRot;
 	public static final double nativeToInches = 201.66;
 	
 	//control loop
@@ -31,6 +34,7 @@ public class NumberConstants {
 	//controller constants
 	public static final double kP = 0.01;
 	public static final double kD = 0.1;
+
 	//gyro PID constant
 	public static final double gyroKP = 0.0;
 	public static final double gyroKI = 0.0;

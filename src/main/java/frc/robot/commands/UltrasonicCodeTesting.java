@@ -1,17 +1,26 @@
-import edu.wpi.first.wpilibj.SampleRobot;
-import edu.wpi.first.wpilibj.Ultrasonic;
+package frc.robot.commands;
 
-public class RobotTemplate extends SampleRobot {
+import edu.wpi.first.wpilibj.AnalogInput;
 
-	Ultrasonic ultra = new Ultrasonic(1,1); // creates the ultra object and assigns ultra to be an ultrasonic sensor which uses DigitalOutput 1 for 
-        // the echo pulse and DigitalInput 1 for the trigger pulse
-    public void robotInit() {
-    	ultra.setAutomaticMode(true); // turns on automatic mode
+import frc.robot.Robot;
+
+public class UltrasonicCodeTesting extends Robot {
+    
+    AnalogInput ultra = new AnalogInput(0);
+    
+    // The scaling factor:  distance in inches = volts returned) / SCALING_FACTOR
+    private final int SCALING_FACTOR = 512/5*24/23;
+    
+    /** Returns the distance measured in inches.  */
+    public double getInches(){
+        double volts = ultra.getVoltage();
+        double inches = volts * SCALING_FACTOR;
+        return inches;
     }
 
-    public void ultrasonicSample() {
-    	double range = ultra.getRangeInches(); // reads the range on the ultrasonic sensor
-
-    //public class getDistance(double inches, double voltage) scale/sensitivity factor calculation, distance conversion
-
+    public void readValue(){
+        System.out.println(getInches());
     }
+    
+}
+    

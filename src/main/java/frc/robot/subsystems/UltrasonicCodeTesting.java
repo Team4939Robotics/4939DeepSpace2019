@@ -24,8 +24,8 @@ public class UltrasonicCodeTesting extends Robot {
     }
 
     public void readValue(){
-        System.out.println(getInches());
-        System.out.println(getVoltage());
+        System.out.println("Distance: " + getInches());
+        System.out.println("Voltage: " + getVoltage());
 
     }
     

@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SPI;
 
 import frc.robot.RobotMap;
 import frc.robot.NumberConstants;
@@ -38,7 +38,7 @@ public class DriveBase extends Subsystem {
   
   public DriveBase() {
     try{
-      ahrs = new AHRS(SerialPort.Port.kMXP); /* Alternatives:  SPI.Port.kMXP, I2C.Port.kMXP or SerialPort.Port.kUSB */
+      ahrs = new AHRS(SPI.Port.kMXP); /* Alternatives:  SPI.Port.kMXP, I2C.Port.kMXP or SerialPort.Port.kUSB */
     } catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     }

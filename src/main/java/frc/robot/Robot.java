@@ -128,7 +128,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    ultrasonic.readValue();
+    SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
+    SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
+    SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
+    SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
+    SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
   }
 
   /**

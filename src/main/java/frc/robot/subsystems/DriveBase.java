@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.RobotMap;
+import frc.robot.NumberConstants;
 import frc.robot.commands.TankDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -21,14 +22,18 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveBase extends Subsystem {
   
   public static WPI_TalonSRX leftDriveFront = new WPI_TalonSRX(RobotMap.LEFT_FRONT.value);
+  public static WPI_TalonSRX leftDriveMiddle = new WPI_TalonSRX(RobotMap.LEFT_MIDDLE.value);
   public static WPI_TalonSRX leftDriveBack = new WPI_TalonSRX(RobotMap.LEFT_BACK.value);
   public static WPI_TalonSRX rightDriveFront = new WPI_TalonSRX(RobotMap.RIGHT_FRONT.value);
+  public static WPI_TalonSRX rightDriveMiddle = new WPI_TalonSRX(RobotMap.RIGHT_MIDDLE.value);
   public static WPI_TalonSRX rightDriveBack = new WPI_TalonSRX(RobotMap.RIGHT_BACK.value);
     
   private AHRS ahrs;
 
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
+
+  public PIDController gyroPID;
   
   public DriveBase() {
     try{
@@ -37,20 +42,40 @@ public class DriveBase extends Subsystem {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     }
     
+    //Initialize Encoders
     leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
-			  RobotMap.LEFT_DRIVE_ENCODER_B.value);
+        RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+
+    leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+
     rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
-			  RobotMap.RIGHT_DRIVE_ENCODER_B.value);
+        RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+        
+    rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
     
+    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
   }
   
   public void runLeftSideDrive(double leftDriveStick) {
     leftDriveFront.set(leftDriveStick);
+    leftDriveMiddle.set(leftDriveStick);
     leftDriveBack.set(leftDriveStick);
   }
   public void runRightSideDrive(double rightDriveStick) {
     rightDriveFront.set(rightDriveStick);
+    rightDriveMiddle.set(rightDriveStick);
     rightDriveBack.set(rightDriveStick);
+  }
+
+  //
+  //Turning using gyro
+  //
+  public void turnDrive(double setAngle, double speed, double epsilon){
+    double angle = gyroPID.calcPID(setAngle, angle(), epsilon);
+    
+    //sides turning opposite directions goes forward; same direction turns
+    runLeftSideDrive(angle*speed); 
+    runRightSideDrive(angle*speed);
   }
   
   //
@@ -81,6 +106,14 @@ public class DriveBase extends Subsystem {
   
   public double getRightEncoderDist() {
     return rightDriveEncoder.getDistance();
+  }
+
+  public double getLeftEncoderRate(){
+    return leftDriveEncoder.getRate();
+  }
+
+  public double getRightEncoderRate(){
+    return rightDriveEncoder.getRate();
   }
   
   public void resetEncoders() {

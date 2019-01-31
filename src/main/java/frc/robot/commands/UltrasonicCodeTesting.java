@@ -12,6 +12,10 @@ public class UltrasonicCodeTesting extends Robot {
     private final int SCALING_FACTOR = 512/5*24/23;
     
     /** Returns the distance measured in inches.  */
+    public double getVoltage(){
+        double volts = ultra.getVoltage();
+        return volts;
+    }
     public double getInches(){
         double volts = ultra.getVoltage();
         double inches = volts * SCALING_FACTOR;
@@ -20,6 +24,8 @@ public class UltrasonicCodeTesting extends Robot {
 
     public void readValue(){
         System.out.println(getInches());
+        System.out.println(getVoltage());
+
     }
     
 }

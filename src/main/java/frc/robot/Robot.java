@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.UsbCamera;
-
+import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
 
@@ -28,6 +28,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   public static DriveBase dt = new DriveBase();
   public static OI m_oi;
+  public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -127,6 +128,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    ultrasonic.readValue();
   }
 
   /**

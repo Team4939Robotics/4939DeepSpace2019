@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 import frc.robot.Robot;
 
-public class UltrasonicCodeTesting extends Robot {
+
+public class UltrasonicCodeTesting {
     
     AnalogInput ultra = new AnalogInput(0);
     
@@ -28,6 +29,7 @@ public class UltrasonicCodeTesting extends Robot {
         System.out.println("Voltage: " + getVoltage());
 
     }
+
     
 }
     

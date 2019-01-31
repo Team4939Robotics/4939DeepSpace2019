@@ -9,7 +9,7 @@ public class UltrasonicCodeTesting extends Robot {
     AnalogInput ultra = new AnalogInput(0);
     
     
-    private final int SCALING_FACTOR = 60/7;
+    private final int SCALING_FACTOR = 10;
     
     /** Returns the distance measured in inches.  */
     public double getVoltage(){

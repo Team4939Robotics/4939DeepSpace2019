@@ -8,14 +8,15 @@ public class UltrasonicCodeTesting extends Robot {
     
     AnalogInput ultra = new AnalogInput(0);
     
-    // The scaling factor:  distance in inches = volts returned) / SCALING_FACTOR
-    private final int SCALING_FACTOR = 512/5*24/23;
+    
+    private final int SCALING_FACTOR = 60/7;
     
     /** Returns the distance measured in inches.  */
     public double getVoltage(){
         double volts = ultra.getVoltage();
         return volts;
     }
+
     public double getInches(){
         double volts = ultra.getVoltage();
         double inches = volts * SCALING_FACTOR;

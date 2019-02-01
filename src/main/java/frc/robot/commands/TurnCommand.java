@@ -27,6 +27,7 @@ public class TurnCommand extends Command {
   @Override
   protected void initialize() {
     Robot.dt.resetGyroYaw();
+    setTimeout(timeOut);
   }
 
   // Called repeatedly when this Command is scheduled to run

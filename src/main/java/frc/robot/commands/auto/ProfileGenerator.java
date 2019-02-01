@@ -11,13 +11,17 @@ package frc.robot.commands.auto;
 import java.util.ArrayList;
 
 import frc.robot.commands.auto.ProfilePoint;
-import frc.robot.NumberConstants;
 
 public class ProfileGenerator {
+    private double maxV;
+    private double maxA;
+    private double deltaT;
 
-    private double maxV = NumberConstants.TOP_SPEED;
-    private double maxA = NumberConstants.MAX_ACCELERATION;
-    private double deltaT = NumberConstants.deltaT;
+    public ProfileGenerator(double maxV, double maxA, double deltaT){
+        this.maxV = maxV;
+        this.maxA = maxA;
+        this.deltaT = deltaT;
+    }
 
     public ArrayList<ProfilePoint> GenerateProfile(double distance){
         int direction; //Makes sure values are negative if distance is negative

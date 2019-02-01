@@ -10,9 +10,8 @@ public class FollowProfile extends Command {
   private int index = 0;
   Timer timer = new Timer();
 
-  public FollowProfile(Trajectory auto){
-    profile = auto;
-
+  public FollowProfile(double distance){
+    profile = Robot.dt.makeProfile(distance);
     requires (Robot.dt);
   }
   

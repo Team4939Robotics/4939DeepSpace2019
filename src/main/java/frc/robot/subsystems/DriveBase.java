@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.SPI;
 import frc.robot.RobotMap;
 import frc.robot.NumberConstants;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.auto.*;
 import frc.robot.subsystems.PIDController;
+import frc.robot.NumberConstants;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -33,6 +35,9 @@ public class DriveBase extends Subsystem {
 
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
+
+  public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
+      NumberConstants.MAX_ACCELERATION, NumberConstants.deltaT);
 
   public PIDController gyroPID;
   
@@ -120,6 +125,14 @@ public class DriveBase extends Subsystem {
   public void resetEncoders() {
     leftDriveEncoder.reset();
     rightDriveEncoder.reset();
+  }
+
+  //
+  //Profiling
+  //
+  public Trajectory makeProfile(double distance){
+    Trajectory trajectory = new Trajectory(dtGenerator.GenerateProfile(distance), NumberConstants.deltaT);
+    return trajectory;
   }
   
   //initiate TankDrive

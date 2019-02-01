@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
 		camera.setResolution(160, 120);
 
     m_chooser.setDefaultOption("Do Nothing", new DoNothing());
+    m_chooser.addOption("Sample Auto", new SampleAuto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

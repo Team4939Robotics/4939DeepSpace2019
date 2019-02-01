@@ -7,17 +7,22 @@
 
 package frc.robot;
 
+import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public Joystick DriverController = new Joystick(1);
+  	public Joystick DriverController = new Joystick(0);
+
+	private Button TurnTest = new JoystickButton(DriverController, 1);
 	
 	public OI() {
-		
+		TurnTest.whenPressed(new TurnCommand(90, 0.7, 2));
 	}
 	
 	public double left() {

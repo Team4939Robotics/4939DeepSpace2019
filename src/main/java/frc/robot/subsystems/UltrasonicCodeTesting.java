@@ -13,10 +13,6 @@ public class UltrasonicCodeTesting {
     private final int SCALING_FACTOR = 60/7;
     
     /** Returns the distance measured in inches.  */
-    public double getVoltage(){
-        double volts = ultra.getVoltage();
-        return volts;
-    }
 
     public double getInches(){
         double volts = ultra.getVoltage();

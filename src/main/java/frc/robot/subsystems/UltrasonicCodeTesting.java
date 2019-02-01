@@ -19,6 +19,11 @@ public class UltrasonicCodeTesting {
         double inches = volts * SCALING_FACTOR;
         return inches;
     }
+    
+    public double getVoltage(){
+        double volts = ultra.getVoltage();
+        return volts;
+    }
 
     public void readValue(){
         System.out.println("Distance: " + getInches());

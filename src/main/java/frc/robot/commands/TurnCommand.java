@@ -15,7 +15,7 @@ public class TurnCommand extends Command {
   private double speed;
   private double timeOut;
 
-  public TurnCommand(double angle, double speed, timeOut) {
+  public TurnCommand(double angle, double speed, double timeOut) {
     this.angle = angle;
     this.speed = speed;
     this.timeOut = timeOut;

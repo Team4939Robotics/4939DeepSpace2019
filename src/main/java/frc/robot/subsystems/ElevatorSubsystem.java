@@ -41,15 +41,15 @@ public class ElevatorSubsystem extends Subsystem {
     elevatorB.set(speed);
   }
 
+  public void setElevatorHeight(double height, double epsilon){
+    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon));
+  }
+
   //
   //Encoder methods
   //
   public double getEncoderDist(){
     return elevatorEncoder.getDistance();
-  }
-
-  public double getEncoderRate(){
-    return elevatorEncoder.getRate();
   }
 
   public void resetEncoder(){

@@ -11,6 +11,7 @@ import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -26,6 +27,9 @@ public class OI {
 	private Button HatchGrabber = new JoystickButton(DriverController, 5);
 	private Button BallIntake = new JoystickButton(DriverController, 3);
 	private Button BallOuttake = new JoystickButton(DriverController, 1);
+	private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
+	private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
+	private Button ElevatorStage1 = new JoystickButton(DriverController, 4);
 
 	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
 	
@@ -38,6 +42,10 @@ public class OI {
 
 		BallOuttake.whenPressed(new PresetOuttakeCommand());
 		BallOuttake.whenReleased(new StopIntakeCommand());
+
+		ElevatorStage3.whenActive(new ElevatorStage3());
+		ElevatorStage2.whenActive(new ElevatorStage2());
+		ElevatorStage1.whenPressed(new ElevatorStage1());
 
 		HatchPusher.whenPressed(new HatchPusherCommand());
 	}

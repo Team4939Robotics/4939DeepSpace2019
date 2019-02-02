@@ -18,7 +18,7 @@ import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
 
-import edu.wpi.first.wpilibj.Preferences;
+//import edu.wpi.first.wpilibj.Preferences;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,10 +31,11 @@ public class Robot extends TimedRobot {
   public static DriveBase dt = new DriveBase();
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static BallIntakeSubsystem BI = new BallIntakeSubsystem();
+  public static ElevatorSubsystem elevator = new ElevatorSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 
-  Preferences prefs;
+  //Preferences prefs;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -47,10 +48,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     
-
-    NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
-    NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
-    NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
+    // NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
+    // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
+    // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(160, 120);

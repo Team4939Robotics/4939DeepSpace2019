@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.NumberConstants;
 import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -24,11 +24,16 @@ public class ElevatorSubsystem extends Subsystem {
 
   public Encoder elevatorEncoder;
 
+  public PIDController elevatorPID;
+
   public ElevatorSubsystem(){
-    elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value, 
+    elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value,
         RobotMap.ELEVATOR_ENCODER_B.value, false, Encoder.EncodingType.k4X);
-    
-    //elevatorEncoder.setDistancePerPulse();
+        
+    elevatorEncoder.setDistancePerPulse(NumberConstants.elevatorEncoderDistPerTick);
+
+    elevatorPID = new PIDController(NumberConstants.elevatorKP, 
+        NumberConstants.elevatorKI, NumberConstants.elevatorkD);
   }
 
   public void runElevator(double speed){

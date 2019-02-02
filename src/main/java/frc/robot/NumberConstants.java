@@ -28,7 +28,8 @@ public class NumberConstants {
 	public static final double nativeToInches = 201.66;
 
 	//elevator encoder
-	public static final double elevatorEncoderDistPerTick = 1; // not final
+	public static final double elevatorEncoderDistPerRotation = 1;
+	public static final double elevatorEncoderDistPerTick = elevatorEncoderDistPerRotation/1024;
 	
 	//control loop
 	public static final double deltaT = 0.020;

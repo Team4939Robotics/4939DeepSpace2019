@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
 
-public class BallIntakeCommand extends Command {
-  public BallIntakeCommand() {
+public class BallOuttakeCommand extends Command {
+  public BallOuttakeCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.BI);
@@ -26,7 +26,7 @@ public class BallIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.useIntake(Robot.m_oi.intake());
+    Robot.BI.useOuttake(Robot.m_oi.intake());
   }
 
   // Make this return true when this Command no longer needs to run execute()

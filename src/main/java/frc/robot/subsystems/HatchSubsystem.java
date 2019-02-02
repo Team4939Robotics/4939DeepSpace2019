@@ -43,14 +43,14 @@ public class HatchSubsystem extends Subsystem {
     pushed = true;
   }
 
-  // public void pullPusher(){
-  //   pusherPiston.set(DoubleSolenoid.Value.kReverse);
-  //   pushed = false;
-  // }
+  public void pullPusher(){
+    pusherPiston.set(DoubleSolenoid.Value.kReverse);
+    pushed = false;
+  }
   
-  // public boolean isPushed(){
-  //   return pushed;
-  // }
+  public boolean isPushed(){
+    return pushed;
+  }
 
   @Override
   public void initDefaultCommand() {

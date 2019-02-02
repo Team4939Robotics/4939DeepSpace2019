@@ -20,17 +20,20 @@ public class NumberConstants {
 	public static final double MASS = 80; // mass of robot in pounds
 	public static final double MAX_ACCELERATION = MAX_TORQUE / (WHEEL_RADIUS * MASS); // T/dm = a
 	
-	//encoder conversions
+	//drive encoder conversions
 	public static final int drivePulsePerRotation = 1024;
 	public static final double driveGearRatio = 1/1;
 	public static final double driveEncoderPulsePerRot = drivePulsePerRotation*driveGearRatio; //pulse per rotation * gear ratio
 	public static final double driveEncoderDistPerTick =(Math.PI*2*WHEEL_RADIUS)/driveEncoderPulsePerRot;
 	public static final double nativeToInches = 201.66;
+
+	//elevator encoder
+	public static final double elevatorEncoderDistPerTick = 1; // not final
 	
 	//control loop
 	public static final double deltaT = 0.020;
 	
-	//controller constants
+	//profile controller constants
 	public static final double kP = 0.01;
 	public static final double kD = 0.1;
 
@@ -38,4 +41,9 @@ public class NumberConstants {
 	public static double gyroKP = 0.0;
 	public static double gyroKI = 0.0;
 	public static double gyroKD = 0.0;
+
+	//elevator PID constants
+	public static double elevatorKP = 0.0;
+	public static double elevatorKI = 0.0;
+	public static double elevatorkD = 0.0;
 }

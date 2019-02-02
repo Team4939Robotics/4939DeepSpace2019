@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.Preferences;
 public class Robot extends TimedRobot {
   public static DriveBase dt = new DriveBase();
   public static HatchSubsystem hatch = new HatchSubsystem();
+  public static BallIntakeSubsystem BI = new BallIntakeSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 

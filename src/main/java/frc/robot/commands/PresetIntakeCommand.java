@@ -7,11 +7,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class BallIntakeCommand extends Command {
-  public BallIntakeCommand() {
+public class PresetIntakeCommand extends Command {
+  public PresetIntakeCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.BI);
@@ -25,25 +25,25 @@ public class BallIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.useIntake(Robot.m_oi.intake());
+    Robot.BI.useIntake(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.BI.useIntake(0);
+    //Robot.BI.useIntake(0)
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    
+    cancel();
   }
 }

@@ -48,4 +48,13 @@ public class OI {
 		else
 			return rightdrivestick;
 	}
+
+	public double intake() {
+		double intakeWheel = OperatorController.getRawAxis(3);
+		if(Math.abs(intakeWheel) < 0.05)
+			return 0.0;
+		else
+			return intakeWheel;
+	}
+	
 }

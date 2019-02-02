@@ -42,6 +42,8 @@ public class DriveBase extends Subsystem {
 
   public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
       NumberConstants.MAX_ACCELERATION, NumberConstants.deltaT);
+  public ProfileController profilePID = new ProfileController(NumberConstants.TOP_SPEED, 
+      NumberConstants.MAX_ACCELERATION, NumberConstants.kP, NumberConstants.kD);
 
   public PIDController gyroPID;
   
@@ -156,6 +158,9 @@ public class DriveBase extends Subsystem {
     Trajectory trajectory = new Trajectory(dtGenerator.GenerateProfile(distance), NumberConstants.deltaT);
     return trajectory;
     // finds the distance between the two points
+  }
+  public double PIDoutput(double pos, double vel, double acc, double currentPos){
+    return profilePID.output(pos, vel, acc, currentPos);
   }
   
   //initiate TankDrive

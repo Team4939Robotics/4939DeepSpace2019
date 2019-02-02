@@ -34,8 +34,8 @@ public class DriveProfile extends Command {
     double currentLeftPos = Robot.dt.getLeftEncoderDist();
     double currentRightPos = Robot.dt.getRightEncoderDist();
 
-    Robot.dt.runLeftSideDrive(ProfileController.output(position, velocity, acceleration, currentLeftPos));
-    Robot.dt.runRightSideDrive(ProfileController.output(position, velocity, acceleration, currentRightPos));
+    Robot.dt.runLeftSideDrive(Robot.dt.PIDoutput(position, velocity, acceleration, currentLeftPos));
+    Robot.dt.runRightSideDrive(Robot.dt.PIDoutput(position, velocity, acceleration, currentRightPos));
 
     if (timer.get() >= profile.deltaT()) {
     		timer.reset();

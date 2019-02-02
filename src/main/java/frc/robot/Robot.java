@@ -18,6 +18,8 @@ import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -31,6 +33,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 
+  Preferences prefs;
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -41,6 +45,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    
+
+    NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
+    NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
+    NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(160, 120);

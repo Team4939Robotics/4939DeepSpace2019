@@ -27,6 +27,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   public static DriveBase dt = new DriveBase();
+  public static HatchSubsystem hatch = new HatchSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 

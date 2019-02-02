@@ -35,7 +35,7 @@ public class NumberConstants {
 	public static final double kD = 0.1;
 
 	//gyro PID constant
-	public static final double gyroKP = 0.0;
-	public static final double gyroKI = 0.0;
-	public static final double gyroKD = 0.0;
+	public static double gyroKP = 0.0;
+	public static double gyroKI = 0.0;
+	public static double gyroKD = 0.0;
 }

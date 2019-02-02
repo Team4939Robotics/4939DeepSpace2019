@@ -43,7 +43,6 @@ public class DriveBase extends Subsystem {
 
   public PIDController gyroPID;
   
-  
   public DriveBase() {
     try{
       ahrs = new AHRS(SPI.Port.kMXP); /* Alternatives:  SPI.Port.kMXP, I2C.Port.kMXP or SerialPort.Port.kUSB */

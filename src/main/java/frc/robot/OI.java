@@ -21,10 +21,14 @@ public class OI {
 	public Joystick DriverController = new Joystick(0);
 	public Joystick OperatorController = new Joystick(1);
 
+// calls the two controllers for the joystick
+
 	private Button TurnTest = new JoystickButton(DriverController, 1);
+	// calls out the button that will be used for turning
 	
 	public OI() {
 		TurnTest.whenPressed(new TurnCommand(90, 0.7, 2));
+		// testing 
 	}
 	
 	public double left() {
@@ -33,6 +37,8 @@ public class OI {
 			return 0.0;
 		else
 			return leftdrivestick;
+
+			//
 	}
 
 	public double right() {

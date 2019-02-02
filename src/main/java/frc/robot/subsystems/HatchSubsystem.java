@@ -27,10 +27,12 @@ public class HatchSubsystem extends Subsystem {
     grabberPiston.set(DoubleSolenoid.Value.kForward);
     grabbed = true;
   }
+
   public void closeGrabber(){
     grabberPiston.set(DoubleSolenoid.Value.kReverse);
     grabbed = false;
   }
+
   public boolean isGrabbed(){
     return grabbed;
   }
@@ -40,10 +42,12 @@ public class HatchSubsystem extends Subsystem {
     pusherPiston.set(DoubleSolenoid.Value.kForward);
     pushed = true;
   }
+
   // public void pullPusher(){
   //   pusherPiston.set(DoubleSolenoid.Value.kReverse);
   //   pushed = false;
   // }
+  
   // public boolean isPushed(){
   //   return pushed;
   // }

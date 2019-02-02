@@ -28,7 +28,6 @@ public class NumberConstants {
 	public static final double nativeToInches = 201.66;
 	
 	//control loop
-	public static final double LOOPER_PERIOD = 0.010; //10 ms
 	public static final double deltaT = 0.020;
 	
 	//controller constants

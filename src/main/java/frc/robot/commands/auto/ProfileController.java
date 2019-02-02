@@ -11,22 +11,25 @@ import frc.robot.NumberConstants;
 
 public class ProfileController {
     //proportional and derivative constants for position and velocity respectively
-	private static double kP;
-	private static double kD;
+	private double kP;
+	private double kD;
 	
 	//constants to scale velocity and acceleration feedforward terms
-	private static double kV = 1/NumberConstants.TOP_SPEED;
-	private static double kA = 1/NumberConstants.MAX_ACCELERATION;
+	private double kV;
+	private double kA;
 	
 	//prev position error for derivative control of velocity
-	private static double prevPosError = 0;
+	private double prevPosError = 0;
+
+	public ProfileController(double maxV, double maxA, double kP, double kD){
+		this.kV = 1/maxV;
+		this.kA = 1/maxA;
+		this.kP = kP;
+		this.kD = kD;
+	}
 	
 	//output based on pos, vel, acc goals and current position
-	public static double output(double posGoal, double velGoal, double accGoal, double currentPos) {
-		//global constants
-		kP = NumberConstants.kP;
-		kD = NumberConstants.kD;
-		
+	public double output(double posGoal, double velGoal, double accGoal, double currentPos) {
 		//position error for proportional control
 		double posError = posGoal - currentPos;
 		
@@ -34,7 +37,7 @@ public class ProfileController {
 		double posOutput = kP * posError;
 		
 		//derivative and feedforward velocity control
-		double velOutput = kD * ((posError - prevPosError)/(12 * NumberConstants.LOOPER_PERIOD) - velGoal) + kV * velGoal; 
+		double velOutput = kD * ((posError - prevPosError)/(12 * NumberConstants.deltaT) - velGoal) + kV * velGoal; 
 		//delta error / 12*period to convert from error in inches to feet 
 		
 		//feedforward acceleration control

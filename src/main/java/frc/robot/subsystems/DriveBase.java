@@ -38,8 +38,11 @@ public class DriveBase extends Subsystem {
 
   public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
       NumberConstants.MAX_ACCELERATION, NumberConstants.deltaT);
+  public ProfileController profilePID = new ProfileController(NumberConstants.TOP_SPEED, 
+      NumberConstants.MAX_ACCELERATION, NumberConstants.kP, NumberConstants.kD);
 
   public PIDController gyroPID;
+  
   
   public DriveBase() {
     try{
@@ -133,6 +136,9 @@ public class DriveBase extends Subsystem {
   public Trajectory makeProfile(double distance){
     Trajectory trajectory = new Trajectory(dtGenerator.GenerateProfile(distance), NumberConstants.deltaT);
     return trajectory;
+  }
+  public double PIDoutput(double pos, double vel, double acc, double currentPos){
+    return profilePID.output(pos, vel, acc, currentPos);
   }
   
   //initiate TankDrive

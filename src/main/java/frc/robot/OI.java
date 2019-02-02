@@ -18,7 +18,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  	public Joystick DriverController = new Joystick(0);
+	public Joystick DriverController = new Joystick(0);
+	public Joystick OperatorController = new Joystick(1);
 
 	private Button TurnTest = new JoystickButton(DriverController, 1);
 	

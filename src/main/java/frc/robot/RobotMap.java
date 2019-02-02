@@ -14,6 +14,7 @@ package frc.robot;
  * floating around.
  */
 public enum RobotMap {
+	//Drive Motors
 	LEFT_FRONT(1),
 	LEFT_MIDDLE(3),
 	LEFT_BACK(5),
@@ -21,16 +22,26 @@ public enum RobotMap {
 	RIGHT_MIDDLE(4),
 	RIGHT_BACK(6),
 
+	//Elevator Motors
 	ELEVATOR_A(7),
 	ELEVATOR_B(8),
 	
+	//Drive Encoders
 	LEFT_DRIVE_ENCODER_A(1),
 	LEFT_DRIVE_ENCODER_B(2),
 	RIGHT_DRIVE_ENCODER_A(3),
 	RIGHT_DRIVE_ENCODER_B(4),
 
+	//Elevator Encoders
 	ELEVATOR_ENCODER_A(5),
-	ELEVATOR_ENCODER_B(6);
+	ELEVATOR_ENCODER_B(6),
+
+	//Solenoids
+	GRABBER_PISTON_A(0),
+	GRABBER_PISTON_B(1),
+
+	PUSHER_PISTON_A(2),
+	PUSHER_PISTON_B(3);
 	
 	public final int value;
 	

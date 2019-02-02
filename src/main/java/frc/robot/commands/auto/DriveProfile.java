@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
-public class FollowProfile extends Command {
+public class DriveProfile extends Command {
   
   private Trajectory profile;
   private int index = 0;
   Timer timer = new Timer();
 
-  public FollowProfile(double distance){
+  public DriveProfile(double distance){
     profile = Robot.dt.makeProfile(distance);
     requires (Robot.dt);
   }

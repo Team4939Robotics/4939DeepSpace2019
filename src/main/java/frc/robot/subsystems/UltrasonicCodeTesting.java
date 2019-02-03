@@ -2,9 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 
-import frc.robot.Robot;
-
-
 public class UltrasonicCodeTesting {
     
     AnalogInput ultra = new AnalogInput(0);

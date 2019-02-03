@@ -9,8 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.UltrasonicCodeTesting;
-import frc.robot.subsystems.DriveBase;
 
 public class UltrasonicFollow extends Command {
   public UltrasonicFollow() {

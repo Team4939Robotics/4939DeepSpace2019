@@ -39,9 +39,7 @@ public class Robot extends TimedRobot {
   //Create Network Table Objects
   NetworkTableEntry x;
   NetworkTableEntry y;
-
-
-
+  NetworkTableEntry isDetected;
 
 
   //Preferences prefs;
@@ -74,8 +72,9 @@ public class Robot extends TimedRobot {
     NetworkTable table = inst.getTable("SmartDashboard");
     x = table.getEntry("X");
     y = table.getEntry("Y");
+    isDetected= table.getEntry("isDetected");
 
-    
+
 
 
   }

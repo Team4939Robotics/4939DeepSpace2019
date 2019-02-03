@@ -16,6 +16,7 @@ public class PIDController {
 	double pOut;
 	double iOut;
 	double dOut;
+	double f;
 
 	double error;
 	double errorSum = 0;
@@ -27,12 +28,13 @@ public class PIDController {
 
     boolean atTarget = false;
     
-    public PIDController(double p, double i, double d) {
+    public PIDController(double p, double i, double d, double f) {
 		errorSum = 0;
 		lastError = 0;
 		pGain = p;
 		iGain = i;
 		dGain = d;
+		this.f = f;
 	}
 
     public double calcPID(double setPoint, double currentValue, double epsilon) {
@@ -58,14 +60,14 @@ public class PIDController {
 		lastError = error;
 
 		// PID Output
-		output = pOut + iOut + dOut;
+		output = pOut + iOut + dOut + f;
 
 		// Scale output to be between 1 and -1
 		if (output != 0.0)
 			output = output / Math.abs(output) * (1.0 - Math.pow(0.1, (Math.abs(output))));
 
 		return output;
-    }
+	}
     
     public void resetPID() {
 		errorSum = 0.0;

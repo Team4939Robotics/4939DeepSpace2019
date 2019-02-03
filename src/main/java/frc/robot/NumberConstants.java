@@ -47,4 +47,5 @@ public class NumberConstants {
 	public static double elevatorKP = 0.0;
 	public static double elevatorKI = 0.0;
 	public static double elevatorkD = 0.0;
+	public static double elevatorkF = 0.0; 
 }

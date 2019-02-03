@@ -61,7 +61,7 @@ public class DriveBase extends Subsystem {
         
     rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
     
-    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
+    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD, 0);
   }
   
   public void runLeftSideDrive(double leftDriveStick) {

@@ -17,6 +17,7 @@ import edu.wpi.cscore.UsbCamera;
 import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.networktables.*;
 
 //import edu.wpi.first.wpilibj.Preferences;
 
@@ -34,6 +35,14 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevator = new ElevatorSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
+
+  //Create Network Table Objects
+  NetworkTableEntry x;
+  NetworkTableEntry y;
+
+
+
+
 
   //Preferences prefs;
 
@@ -59,6 +68,16 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Sample Auto", new SampleAuto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+      // Set up and populate the networkTable
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("SmartDashboard");
+    x = table.getEntry("X");
+    y = table.getEntry("Y");
+
+    
+
+
   }
 
   /**

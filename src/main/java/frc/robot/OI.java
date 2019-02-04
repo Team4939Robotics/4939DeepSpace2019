@@ -23,10 +23,10 @@ public class OI {
 	public Joystick DriverController = new Joystick(0);
 	public Joystick OperatorController = new Joystick(1);
 
-	//private Button TurnTest = new JoystickButton(DriverController, 1);
+	private Button TurnTest = new JoystickButton(DriverController, 1);
 	private Button HatchGrabber = new JoystickButton(DriverController, 5);
 	private Button BallIntake = new JoystickButton(DriverController, 3);
-	private Button BallOuttake = new JoystickButton(DriverController, 1);
+	// private Button BallOuttake = new JoystickButton(DriverController, 1);
 	private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
 	private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
 	private Button ElevatorStage1 = new JoystickButton(DriverController, 4);
@@ -34,14 +34,14 @@ public class OI {
 	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
 	
 	public OI() {
-		//TurnTest.whenPressed(new TurnCommand(90, 0.7, 2));
+		TurnTest.whenPressed(new TurnCommand(45, 0.5, 2));
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
 
 		BallIntake.whenPressed(new PresetIntakeCommand());
 		BallIntake.whenReleased(new StopIntakeCommand());
 
-		BallOuttake.whenPressed(new PresetOuttakeCommand());
-		BallOuttake.whenReleased(new StopIntakeCommand());
+		// BallOuttake.whenPressed(new PresetOuttakeCommand());
+		// BallOuttake.whenReleased(new StopIntakeCommand());
 
 		ElevatorStage3.whenActive(new ElevatorStage3());
 		ElevatorStage2.whenActive(new ElevatorStage2());

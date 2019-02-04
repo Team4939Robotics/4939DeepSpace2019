@@ -158,6 +158,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putNumber("Accumulated angle: ", dt.angle());
     SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
     SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());

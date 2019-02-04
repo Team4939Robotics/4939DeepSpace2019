@@ -93,7 +93,7 @@ public class DriveBase extends Subsystem {
   }
   
   public void resetGyroYaw() {
-    ahrs.reset();
+    ahrs.zeroYaw();
   }
   
   public AHRS getAhrs() {

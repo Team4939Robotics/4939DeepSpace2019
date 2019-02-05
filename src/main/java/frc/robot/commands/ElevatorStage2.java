@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HatchPusherCommand extends Command {
-  public HatchPusherCommand() {
-    requires(Robot.hatch);
+public class ElevatorStage2 extends Command {
+  public ElevatorStage2() {
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
@@ -23,18 +23,13 @@ public class HatchPusherCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.hatch.isPushed()){
-      Robot.hatch.pullPusher();
-    }
-    else{
-      Robot.hatch.pushPusher();
-    }
+    Robot.elevator.setElevatorHeight(40, 1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
@@ -46,5 +41,6 @@ public class HatchPusherCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    cancel();
   }
 }

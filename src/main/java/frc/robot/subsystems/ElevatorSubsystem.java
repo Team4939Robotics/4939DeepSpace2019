@@ -33,7 +33,7 @@ public class ElevatorSubsystem extends Subsystem {
     elevatorEncoder.setDistancePerPulse(NumberConstants.elevatorEncoderDistPerTick);
 
     elevatorPID = new PIDController(NumberConstants.elevatorKP, 
-        NumberConstants.elevatorKI, NumberConstants.elevatorkD);
+        NumberConstants.elevatorKI, NumberConstants.elevatorkD, NumberConstants.elevatorkF);
   }
 
   public void runElevator(double speed){
@@ -41,15 +41,15 @@ public class ElevatorSubsystem extends Subsystem {
     elevatorB.set(speed);
   }
 
+  public void setElevatorHeight(double height, double epsilon){
+    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon));
+  }
+
   //
   //Encoder methods
   //
   public double getEncoderDist(){
     return elevatorEncoder.getDistance();
-  }
-
-  public double getEncoderRate(){
-    return elevatorEncoder.getRate();
   }
 
   public void resetEncoder(){

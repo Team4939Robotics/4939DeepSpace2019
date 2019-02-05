@@ -17,8 +17,9 @@ import edu.wpi.cscore.UsbCamera;
 import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.networktables.*;
 
-import edu.wpi.first.wpilibj.Preferences;
+//import edu.wpi.first.wpilibj.Preferences;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,10 +32,17 @@ public class Robot extends TimedRobot {
   public static DriveBase dt = new DriveBase();
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static BallIntakeSubsystem BI = new BallIntakeSubsystem();
+  public static ElevatorSubsystem elevator = new ElevatorSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
 
-  Preferences prefs;
+  //Create Network Table Objects
+  NetworkTableEntry x;
+  NetworkTableEntry y;
+  NetworkTableEntry isDetected;
+
+
+  //Preferences prefs;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -47,10 +55,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     
-
-    NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
-    NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
-    NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
+    // NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
+    // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
+    // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(160, 120);
@@ -59,6 +66,17 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Sample Auto", new SampleAuto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+      // Set up and populate the networkTable
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("SmartDashboard");
+    x = table.getEntry("X");
+    y = table.getEntry("Y");
+    isDetected= table.getEntry("isDetected");
+
+
+
+
   }
 
   /**
@@ -140,6 +158,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putNumber("Accumulated angle: ", dt.angle());
     SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
     SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());

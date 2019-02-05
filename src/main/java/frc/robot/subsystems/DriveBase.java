@@ -17,7 +17,6 @@ import frc.robot.NumberConstants;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.PIDController;
-import frc.robot.NumberConstants;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -68,7 +67,7 @@ public class DriveBase extends Subsystem {
         //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
 
     
-    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD);
+    gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD, 0);
   }
   
   public void runLeftSideDrive(double leftDriveStick) {
@@ -106,8 +105,12 @@ public class DriveBase extends Subsystem {
   }
   
   public void resetGyroYaw() {
+<<<<<<< HEAD
     ahrs.reset();
     // resets the gyro axis to 0
+=======
+    ahrs.zeroYaw();
+>>>>>>> a68edf054b113dc87f0b4ed542792b06097d707b
   }
   
   public AHRS getAhrs() {

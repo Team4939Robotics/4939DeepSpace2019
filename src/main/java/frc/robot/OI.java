@@ -11,6 +11,7 @@ import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -21,6 +22,7 @@ public class OI {
 	public Joystick DriverController = new Joystick(0);
 	public Joystick OperatorController = new Joystick(1);
 
+<<<<<<< HEAD
 // calls the two controllers for the joystick
 
 	private Button TurnTest = new JoystickButton(DriverController, 1);
@@ -29,6 +31,26 @@ public class OI {
 	public OI() {
 		TurnTest.whenPressed(new TurnCommand(90, 0.7, 2));
 		// testing 
+=======
+	//private Button TurnTest = new JoystickButton(DriverController, 1);
+	private Button HatchGrabber = new JoystickButton(DriverController, 5);
+	private Button BallIntake = new JoystickButton(DriverController, 3);
+	private Button BallOuttake = new JoystickButton(DriverController, 1);
+
+	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
+	
+	public OI() {
+		//TurnTest.whenPressed(new TurnCommand(90, 0.7, 2));
+		HatchGrabber.whenPressed(new HatchGrabberCommand());
+
+		BallIntake.whenPressed(new PresetIntakeCommand());
+		BallIntake.whenReleased(new StopIntakeCommand());
+
+		BallOuttake.whenPressed(new PresetOuttakeCommand());
+		BallOuttake.whenReleased(new StopIntakeCommand());
+
+		HatchPusher.whenPressed(new HatchPusherCommand());
+>>>>>>> 4dc65b804802f7e01539a123cbb3410a98a1adfe
 	}
 	
 	public double left() {

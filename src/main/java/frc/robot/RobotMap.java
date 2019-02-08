@@ -24,7 +24,7 @@ public enum RobotMap {
 
 	//Elevator Motors
 	ELEVATOR_A(7),
-	ELEVATOR_B(8),
+	//ELEVATOR_B(8),
 
 	//Ball Intake Motors
 	INTAKE_MOTOR_A(9),

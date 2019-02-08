@@ -39,6 +39,9 @@ public class TurnCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if(Robot.m_oi.left() != 0.0 || Robot.m_oi.right() != 0.0){
+      return true;
+    }
     return isTimedOut();
   }
 

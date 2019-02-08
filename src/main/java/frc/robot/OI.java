@@ -20,13 +20,15 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
 	public Joystick DriverController = new Joystick(0);
 	public Joystick OperatorController = new Joystick(1);
-	// calls the two controllers for the joystick
+	// declares the two controllers
 
-	private Button TurnTest = new JoystickButton(DriverController, 1);
+	private Button TurnLeft = new JoystickButton(DriverController, 3);
+	private Button TurnRight = new JoystickButton(DriverController, 1);
 	private Button HatchGrabber = new JoystickButton(DriverController, 5);
-	private Button BallIntake = new JoystickButton(DriverController, 3);
+	//private Button BallIntake = new JoystickButton(DriverController, 3);
 	// private Button BallOuttake = new JoystickButton(DriverController, 1);
 	private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
 	private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
@@ -35,11 +37,12 @@ public class OI {
 	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
 	
 	public OI() {
-		TurnTest.whenPressed(new TurnCommand(45, 0.5, 2)); //for testing
+		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
+		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5)); //for testing
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
 
-		BallIntake.whenPressed(new PresetIntakeCommand());
-		BallIntake.whenReleased(new StopIntakeCommand());
+		//BallIntake.whenPressed(new PresetIntakeCommand());
+		//BallIntake.whenReleased(new StopIntakeCommand());
 
 		// BallOuttake.whenPressed(new PresetOuttakeCommand());
 		// BallOuttake.whenReleased(new StopIntakeCommand());
@@ -74,5 +77,4 @@ public class OI {
 		else
 			return intakeWheel;
 	}
-	
 }

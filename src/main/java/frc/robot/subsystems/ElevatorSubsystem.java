@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 public class ElevatorSubsystem extends Subsystem {
   public static WPI_TalonSRX elevatorA = new WPI_TalonSRX(RobotMap.ELEVATOR_A.value);
-  public static WPI_TalonSRX elevatorB = new WPI_TalonSRX(RobotMap.ELEVATOR_B.value);
+  //public static WPI_TalonSRX elevatorB = new WPI_TalonSRX(RobotMap.ELEVATOR_B.value);
 
   public Encoder elevatorEncoder;
 
@@ -38,7 +38,7 @@ public class ElevatorSubsystem extends Subsystem {
 
   public void runElevator(double speed){
     elevatorA.set(speed);
-    elevatorB.set(speed);
+    //elevatorB.set(speed);
   }
 
   public void setElevatorHeight(double height, double epsilon){

@@ -37,8 +37,8 @@ public class OI {
 	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
 	
 	public OI() {
-		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
-		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5)); //for testing
+		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1));
+		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1)); //for testing
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
 
 		//BallIntake.whenPressed(new PresetIntakeCommand());

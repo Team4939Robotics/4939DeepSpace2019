@@ -29,11 +29,15 @@ public class DriveBase extends Subsystem {
   public static WPI_TalonSRX rightDriveFront = new WPI_TalonSRX(RobotMap.RIGHT_FRONT.value);
   public static WPI_TalonSRX rightDriveMiddle = new WPI_TalonSRX(RobotMap.RIGHT_MIDDLE.value);
   public static WPI_TalonSRX rightDriveBack = new WPI_TalonSRX(RobotMap.RIGHT_BACK.value);
+
+  // Shows the joystick configurations for left and right drive/
+
     
   private AHRS ahrs;
 
   public Encoder leftDriveEncoder;
   public Encoder rightDriveEncoder;
+  // initialize two encoders leftDrive and rightDrive
 
   public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
       NumberConstants.MAX_ACCELERATION, NumberConstants.deltaT);
@@ -54,11 +58,14 @@ public class DriveBase extends Subsystem {
         RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
 
     leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+    //sets the multiplier used to determine the distance driven based on the count value from the leftDriveEncoder.
 
     rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
         RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
         
     rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+        //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
+
     
     gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD, 0);
   }
@@ -67,16 +74,20 @@ public class DriveBase extends Subsystem {
     leftDriveFront.set(leftDriveStick);
     leftDriveMiddle.set(leftDriveStick);
     leftDriveBack.set(leftDriveStick);
+
+    //Runs left drive 
   }
   public void runRightSideDrive(double rightDriveStick) {
     rightDriveFront.set(rightDriveStick);
     rightDriveMiddle.set(rightDriveStick);
     rightDriveBack.set(rightDriveStick);
+
+  // Runs right drive
   }
 
-  //
+  
   //Turning using gyro
-  //
+  
   public void turnDrive(double setAngle, double speed, double epsilon){
     double angle = gyroPID.calcPID(setAngle, angle(), epsilon);
     
@@ -90,42 +101,61 @@ public class DriveBase extends Subsystem {
   //
   public double angle() {
     return ahrs.getAngle();
+    //returns the number of degrees for rotation
   }
   
   public void resetGyroYaw() {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    ahrs.reset();
+    // resets the gyro axis to 0
+=======
     ahrs.zeroYaw();
+>>>>>>> a68edf054b113dc87f0b4ed542792b06097d707b
+=======
+    ahrs.zeroYaw();
+>>>>>>> a68edf054b113dc87f0b4ed542792b06097d707b
   }
   
   public AHRS getAhrs() {
     return ahrs;
+    //used to call objects in other classes
   }
   
   public double rate() {
     return ahrs.getRate();
+    //returns rate of rotation of the gyro in deegrees per second
   }
   
-  //
+  
   //Encoder Methods
-  //
+  
   public double getLeftEncoderDist() {
     return leftDriveEncoder.getDistance();
+  //gets the distance from the robot from the last given distance given from the left encoderand returns the same distance from the last reset
+  
   }
   
   public double getRightEncoderDist() {
     return rightDriveEncoder.getDistance();
+    //gets the distance from the robot from the last given distance given from the left encoder and returns the same distance from the last reset
+
   }
 
   public double getLeftEncoderRate(){
     return leftDriveEncoder.getRate();
+    //gets the current rate of the left encoder and returns the value
   }
 
   public double getRightEncoderRate(){
     return rightDriveEncoder.getRate();
+     //gets the current rate of the left encoder and returns the value 
   }
   
   public void resetEncoders() {
     leftDriveEncoder.reset();
     rightDriveEncoder.reset();
+    // resets the enocder distance and the current count to zero on the encoder
   }
 
   //
@@ -134,6 +164,7 @@ public class DriveBase extends Subsystem {
   public Trajectory makeProfile(double distance){
     Trajectory trajectory = new Trajectory(dtGenerator.GenerateProfile(distance), NumberConstants.deltaT);
     return trajectory;
+    // finds the distance between the two points
   }
   public double PIDoutput(double pos, double vel, double acc, double currentPos){
     return profilePID.output(pos, vel, acc, currentPos);

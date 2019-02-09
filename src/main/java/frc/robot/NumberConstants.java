@@ -39,10 +39,9 @@ public class NumberConstants {
 	public static final double kD = 0.1;
 
 	//gyro PID constant
-	public static double gyroKP = 0.06;
+	public static double gyroKP = 0.09;
 	public static double gyroKI = 0.0;
-	public static double gyroKD = 0.12;
-
+	public static double gyroKD = 0.17;
 	//elevator PID constants
 	public static double elevatorKP = 0.0;
 	public static double elevatorKI = 0.0;

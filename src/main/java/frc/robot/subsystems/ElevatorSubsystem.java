@@ -44,8 +44,8 @@ public class ElevatorSubsystem extends Subsystem {
     //elevatorB.set(speed);
   }
 
-  public void setElevatorHeight(double height, double epsilon){
-    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon));
+  public void setElevatorHeight(double height, double speed, double epsilon){
+    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon)*speed);
   }
 
   //

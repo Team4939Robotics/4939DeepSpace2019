@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -27,6 +28,8 @@ public class ElevatorSubsystem extends Subsystem {
   public PIDController elevatorPID;
 
   public ElevatorSubsystem(){
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+    
     elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value,
         RobotMap.ELEVATOR_ENCODER_B.value, false, Encoder.EncodingType.k4X);
         

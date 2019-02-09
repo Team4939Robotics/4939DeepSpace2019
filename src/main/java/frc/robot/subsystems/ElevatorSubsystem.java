@@ -28,7 +28,7 @@ public class ElevatorSubsystem extends Subsystem {
   public PIDController elevatorPID;
 
   public ElevatorSubsystem(){
-    elevatorA.setNeutralMode(NeutralMode.Brake);
+    elevatorA.setNeutralMode(NeutralMode.Coast);
     
     elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value,
         RobotMap.ELEVATOR_ENCODER_B.value, false, Encoder.EncodingType.k4X);
@@ -48,6 +48,12 @@ public class ElevatorSubsystem extends Subsystem {
     runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon)*speed);
   }
 
+  public void setNeutralToCoast(){
+    elevatorA.setNeutralMode(NeutralMode.Coast);
+  }
+  public void setNeutralToBrake(){
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+  }
   //
   //Encoder methods
   //

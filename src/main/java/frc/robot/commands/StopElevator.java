@@ -24,6 +24,7 @@ public class StopElevator extends Command {
   @Override
   protected void execute() {
     Robot.elevator.runElevator(0);
+    Robot.elevator.elevatorA.setNeutralMode(NeutralMode.Brake);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -42,7 +42,8 @@ public class OI {
 		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5)); //for testing
 
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
-		HatchPusher.whenPressed(new HatchPusherCommand());
+		// HatchPusher.whenPressed(new HatchPusherCommand());
+		HatchPusher.whenPressed(new resetEncoder());
 
 		BallIntake.whenPressed(new PresetIntakeCommand());
 		BallIntake.whenReleased(new StopIntakeCommand());

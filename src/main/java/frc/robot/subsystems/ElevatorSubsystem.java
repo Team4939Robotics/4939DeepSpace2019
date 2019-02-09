@@ -30,7 +30,7 @@ public class ElevatorSubsystem extends Subsystem {
     elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value,
         RobotMap.ELEVATOR_ENCODER_B.value, false, Encoder.EncodingType.k4X);
         
-    elevatorEncoder.setDistancePerPulse(NumberConstants.elevatorEncoderDistPerTick);
+    elevatorEncoder.setDistancePerPulse(NumberConstants.elevatorEncoderDistPerCount);
 
     elevatorPID = new PIDController(NumberConstants.elevatorKP, 
         NumberConstants.elevatorKI, NumberConstants.elevatorkD, NumberConstants.elevatorkF);
@@ -54,6 +54,10 @@ public class ElevatorSubsystem extends Subsystem {
 
   public void resetEncoder(){
     elevatorEncoder.reset();
+  }
+
+  public int getCount(){
+    return elevatorEncoder.getRaw();
   }
 
   @Override

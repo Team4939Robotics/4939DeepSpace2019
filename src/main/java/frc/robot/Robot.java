@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.UsbCamera;
 import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
@@ -60,7 +61,9 @@ public class Robot extends TimedRobot {
     // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(160, 120);
+    camera.setResolution(160, 120);
+
+    AxisCamera axiscamera = new AxisCamera("axisCamera","http://10.49.39.93/mjpg/video.mjpg");
 
     m_chooser.setDefaultOption("Do Nothing", new DoNothing());
     m_chooser.addOption("Sample Auto", new SampleAuto());
@@ -73,9 +76,6 @@ public class Robot extends TimedRobot {
     x = table.getEntry("X");
     y = table.getEntry("Y");
     isDetected= table.getEntry("isDetected");
-
-
-
 
   }
 
@@ -164,6 +164,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
+    SmartDashboard.putNumber("Encoder Count: ", elevator.getCount());
   }
 
   /**

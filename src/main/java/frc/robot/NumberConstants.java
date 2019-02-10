@@ -28,8 +28,9 @@ public class NumberConstants {
 	public static final double nativeToInches = 201.66;
 
 	//elevator encoder
-	public static final double elevatorEncoderDistPerRotation = 1;
-	public static final double elevatorEncoderDistPerTick = elevatorEncoderDistPerRotation/1024;
+	public static final double elevatorEncoderMaxDist = 1;
+	public static final double elevatorEncoderMaxCount = 0;
+	public static final double elevatorEncoderDistPerCount = elevatorEncoderMaxDist/elevatorEncoderMaxCount;
 	
 	//control loop
 	public static final double deltaT = 0.020;
@@ -39,10 +40,9 @@ public class NumberConstants {
 	public static final double kD = 0.1;
 
 	//gyro PID constant
-	public static double gyroKP = 0.1;
+	public static double gyroKP = 0.09;
 	public static double gyroKI = 0.0;
-	public static double gyroKD = 0.15;
-
+	public static double gyroKD = 0.17;
 	//elevator PID constants
 	public static double elevatorKP = 0.0;
 	public static double elevatorKI = 0.0;

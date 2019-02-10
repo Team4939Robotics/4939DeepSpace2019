@@ -42,25 +42,25 @@ public class TankDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	inputL = Robot.m_oi.left()*-1;
-		  inputR = Robot.m_oi.right();
-		  deltaL = inputL - prevInputL;
-		  deltaR = inputR - prevInputR;
+		inputR = Robot.m_oi.right();
+		deltaL = inputL - prevInputL;
+		deltaR = inputR - prevInputR;
 		
-		  if(deltaL >= DELTA_LIMIT)
-			  inputL += RAMP_UP_CONSTANT;
-		  else if(deltaL <= -DELTA_LIMIT)
-			  inputL -= RAMP_DOWN_CONSTANT;
+		if(deltaL >= DELTA_LIMIT)
+			inputL += RAMP_UP_CONSTANT;
+		else if(deltaL <= -DELTA_LIMIT)
+			inputL -= RAMP_DOWN_CONSTANT;
 		
-		  if(deltaR >= DELTA_LIMIT)
-			  inputR += RAMP_UP_CONSTANT;
-		  else if(deltaR <= -DELTA_LIMIT)
-			  inputR -= RAMP_DOWN_CONSTANT;
+		if(deltaR >= DELTA_LIMIT)
+			inputR += RAMP_UP_CONSTANT;
+		else if(deltaR <= -DELTA_LIMIT)
+		  inputR -= RAMP_DOWN_CONSTANT;
 		
-		  Robot.dt.runLeftSideDrive(inputL);
-		  Robot.dt.runRightSideDrive(inputR);
+		Robot.dt.runLeftSideDrive(inputL);
+		Robot.dt.runRightSideDrive(inputR);
 		
-		  prevInputL = inputL;
-		  prevInputR = inputR;
+		prevInputL = inputL;
+		prevInputR = inputR;
     }
 
     // Make this return true when this Command no longer needs to run execute()

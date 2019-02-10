@@ -105,16 +105,13 @@ public class DriveBase extends Subsystem {
   }
   
   public void resetGyroYaw() {
-<<<<<<< HEAD
-<<<<<<< HEAD
     ahrs.reset();
     // resets the gyro axis to 0
-=======
+
     ahrs.zeroYaw();
->>>>>>> a68edf054b113dc87f0b4ed542792b06097d707b
-=======
+
     ahrs.zeroYaw();
->>>>>>> a68edf054b113dc87f0b4ed542792b06097d707b
+
   }
   
   public AHRS getAhrs() {

@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.NumberConstants;
 import frc.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
-
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -23,17 +22,13 @@ public class ElevatorSubsystem extends Subsystem {
   public static WPI_TalonSRX elevatorA = new WPI_TalonSRX(RobotMap.ELEVATOR_A.value);
   //public static WPI_TalonSRX elevatorB = new WPI_TalonSRX(RobotMap.ELEVATOR_B.value);
 
-  public Encoder elevatorEncoder;
+  // public Encoder elevatorEncoder;
 
   public PIDController elevatorPID;
 
   public ElevatorSubsystem(){
-    elevatorA.setNeutralMode(NeutralMode.Coast);
-    
-    elevatorEncoder = new Encoder(RobotMap.ELEVATOR_ENCODER_A.value,
-        RobotMap.ELEVATOR_ENCODER_B.value, false, Encoder.EncodingType.k4X);
-        
-    elevatorEncoder.setDistancePerPulse(NumberConstants.elevatorEncoderDistPerCount);
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+    elevatorA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     elevatorPID = new PIDController(NumberConstants.elevatorKP, 
         NumberConstants.elevatorKI, NumberConstants.elevatorkD, NumberConstants.elevatorkF);
@@ -45,28 +40,28 @@ public class ElevatorSubsystem extends Subsystem {
   }
 
   public void setElevatorHeight(double height, double speed, double epsilon){
-    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon)*speed);
+    runElevator(elevatorPID.calcPID(height, getCount(), epsilon)*speed);
   }
 
-  public void setNeutralToCoast(){
-    elevatorA.setNeutralMode(NeutralMode.Coast);
-  }
-  public void setNeutralToBrake(){
-    elevatorA.setNeutralMode(NeutralMode.Brake);
-  }
+  // public void setNeutralToCoast(){
+  //   elevatorA.setNeutralMode(NeutralMode.Coast);
+  // }
+  // public void setNeutralToBrake(){
+  //   elevatorA.setNeutralMode(NeutralMode.Brake);
+  // }
   //
   //Encoder methods
   //
   public double getEncoderDist(){
-    return elevatorEncoder.getDistance();
+    return elevatorA.getSelectedSensorPosition();
   }
 
   public void resetEncoder(){
-    elevatorEncoder.reset();
+    elevatorA.setSelectedSensorPosition(0);
   }
 
   public int getCount(){
-    return elevatorEncoder.getRaw();
+    return elevatorA.getSelectedSensorPosition();
   }
 
   @Override

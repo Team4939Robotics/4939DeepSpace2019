@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,7 +15,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.cscore.HttpCamera;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.HttpCamera.HttpCameraKind;
+import edu.wpi.cscore.VideoSource;
 import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.*;
@@ -41,10 +45,19 @@ public class Robot extends TimedRobot {
   NetworkTableEntry x;
   NetworkTableEntry y;
   NetworkTableEntry isDetected;
+  NetworkTableEntry cameraSelection;
+
+  UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
+  CameraServer cs = CameraServer.getInstance();
+  HttpCamera frontIPCamera = new HttpCamera("frontIPcam", "http://10.49.39.93/mjpg/video.mjpg", HttpCameraKind.kMJPGStreamer);
+  Joystick joy1;
+
+  Boolean prevTrigger = false;
+
+
 
 
   //Preferences prefs;
-
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -54,16 +67,25 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+
     m_oi = new OI();
+
+
+    frontIPCamera.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    cs.startAutomaticCapture(frontIPCamera);
     
     // NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
     // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
     // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setResolution(160, 120);
 
-    AxisCamera axiscamera = new AxisCamera("axisCamera","http://10.49.39.93/mjpg/video.mjpg");
+<<<<<<< HEAD
+    AxisCamera axisCamera = new AxisCamera("axisCamera","http://10.49.39.93/mjpg/video.mjpg");
+    axisCamera.setResolution(800, 600);
+=======
+
+>>>>>>> 81f7d8ea92092f55f7b99eae736513bf184bd8d0
 
     m_chooser.setDefaultOption("Do Nothing", new DoNothing());
     m_chooser.addOption("Sample Auto", new SampleAuto());
@@ -164,6 +186,21 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
+    SmartDashboard.putNumber("Encoder Count: ", elevator.getCount());
+
+    NetworkTableInstance nt = NetworkTableInstance.getDefault();
+    NetworkTable table = nt.getTable("SmartDashboard");
+
+    if (joy1.getTrigger() && !prevTrigger) {
+      System.out.println("Setting camera 2\n");
+      cameraSelection.setString(frontIPCamera.getName());
+    } else if (!joy1.getTrigger() && prevTrigger) {
+      
+      cameraSelection.setString(camera1.getName());
+    }
+    prevTrigger = joy1.getTrigger();
+
+
   }
 
   /**

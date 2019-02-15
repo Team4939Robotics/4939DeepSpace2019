@@ -10,10 +10,7 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.commands.auto.*;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,31 +24,40 @@ public class OI {
 
 	private Button TurnLeft = new JoystickButton(DriverController, 3);
 	private Button TurnRight = new JoystickButton(DriverController, 1);
-	private Button HatchGrabber = new JoystickButton(DriverController, 5);
-	//private Button BallIntake = new JoystickButton(DriverController, 3);
-	// private Button BallOuttake = new JoystickButton(DriverController, 1);
+	private Button HatchGrabber = new JoystickButton(DriverController, 6);
+	private Button BallIntake = new JoystickButton(DriverController, 4);
+	private Button BallOuttake = new JoystickButton(DriverController, 2);
 	private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
 	private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
-	private Button ElevatorStage1 = new JoystickButton(DriverController, 4);
+	private Button ElevatorStage1 = new JoystickButton(DriverController, 5);
 
-	private POVButton HatchPusher = new POVButton(OperatorController, 0, 0);
-	
+	private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
+	private Button ManualElevatorDown = new JoystickButton(OperatorController, 7);
+	private Button HatchPusher = new JoystickButton(OperatorController, 2);
+	private Button FrontClimbPiston = new JoystickButton(OperatorController, 11);
+	private Button BackClimbPiston = new JoystickButton(OperatorController, 12);
+
 	public OI() {
-		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1));
-		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1)); //for testing
+		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
+		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5)); //for testing
+
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
+		// HatchPusher.whenPressed(new HatchPusherCommand());
+		HatchPusher.whenPressed(new resetEncoder());
 
-		//BallIntake.whenPressed(new PresetIntakeCommand());
-		//BallIntake.whenReleased(new StopIntakeCommand());
-
-		// BallOuttake.whenPressed(new PresetOuttakeCommand());
-		// BallOuttake.whenReleased(new StopIntakeCommand());
+		BallIntake.whenPressed(new PresetIntakeCommand());
+		BallIntake.whenReleased(new StopIntakeCommand());
+		BallOuttake.whenPressed(new PresetOuttakeCommand());
+		BallOuttake.whenReleased(new StopIntakeCommand());
 
 		ElevatorStage3.whenActive(new ElevatorStage3());
 		ElevatorStage2.whenActive(new ElevatorStage2());
 		ElevatorStage1.whenPressed(new ElevatorStage1());
 
-		HatchPusher.whenPressed(new HatchPusherCommand());
+		ManualElevatorUp.whenPressed(new ManualElevatorUp());
+		ManualElevatorUp.whenReleased(new StopElevator());
+		ManualElevatorDown.whenPressed(new ManualElevatorDown());
+		ManualElevatorDown.whenReleased(new StopElevator());
 	}
 	
 	public double left() {

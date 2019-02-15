@@ -19,12 +19,12 @@ public enum RobotMap {
 	LEFT_MIDDLE(3),
 	LEFT_BACK(5),
 	RIGHT_FRONT(2),
-	RIGHT_MIDDLE(4),
+	RIGHT_MIDDLE(4), 
 	RIGHT_BACK(6),
 
 	//Elevator Motors
 	ELEVATOR_A(7),
-	ELEVATOR_B(8),
+	//ELEVATOR_B(8),
 
 	//Ball Intake Motors
 	INTAKE_MOTOR_A(9),

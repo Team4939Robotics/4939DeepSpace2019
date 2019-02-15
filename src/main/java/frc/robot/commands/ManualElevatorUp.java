@@ -10,26 +10,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ElevatorStage3 extends Command {
-  public ElevatorStage3() {
+public class ManualElevatorUp extends Command {
+  public ManualElevatorUp() {
     requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // Robot.elevator.setNeutralToCoast();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorHeight(69, 0.5, 1);
+    Robot.elevator.runElevator(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
@@ -41,6 +42,5 @@ public class ElevatorStage3 extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    cancel();
   }
 }

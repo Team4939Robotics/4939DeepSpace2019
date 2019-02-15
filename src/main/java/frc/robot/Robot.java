@@ -81,8 +81,12 @@ public class Robot extends TimedRobot {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     AxisCamera axisCamera = new AxisCamera("axisCamera","http://10.49.39.93/mjpg/video.mjpg");
     axisCamera.setResolution(800, 600);
+=======
+
+>>>>>>> 81f7d8ea92092f55f7b99eae736513bf184bd8d0
 =======
 
 >>>>>>> 81f7d8ea92092f55f7b99eae736513bf184bd8d0

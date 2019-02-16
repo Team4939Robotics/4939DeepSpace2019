@@ -9,7 +9,11 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 import frc.robot.commands.BallIntakeCommand;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import java.util.concurrent.TimeUnit;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -20,6 +24,7 @@ public class BallIntakeSubsystem extends Subsystem {
   // here. Call these from Commands.
   public static WPI_TalonSRX intakeMotorA = new WPI_TalonSRX(RobotMap.INTAKE_MOTOR_A.value);
   public static WPI_TalonSRX intakeMotorB = new WPI_TalonSRX(RobotMap.INTAKE_MOTOR_B.value);
+  public static Servo pushServo = new Servo(RobotMap.SERVO_MOTOR.value);
   
   public void useIntake(double speed) {
     intakeMotorA.set(speed);
@@ -31,8 +36,14 @@ public class BallIntakeSubsystem extends Subsystem {
     intakeMotorB.set(speed);
   }
 
+  public void pushBall(){
+    pushServo.setAngle(180);
+    pushServo.setAngle(0);
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new BallIntakeCommand());
   }
+
 }

@@ -36,6 +36,7 @@ public class OI {
 	private Button HatchPusher = new JoystickButton(OperatorController, 2);
 	private Button FrontClimbPiston = new JoystickButton(OperatorController, 11);
 	private Button BackClimbPiston = new JoystickButton(OperatorController, 12);
+	private Button PushServo = new JoystickButton(OperatorController, 1);
 
 	public OI() {
 		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
@@ -58,6 +59,8 @@ public class OI {
 		ManualElevatorUp.whenReleased(new StopElevator());
 		ManualElevatorDown.whenPressed(new ManualElevatorDown());
 		ManualElevatorDown.whenReleased(new StopElevator());
+
+		PushServo.whenPressed(new PushBallCommand());
 	}
 	
 	public double left() {

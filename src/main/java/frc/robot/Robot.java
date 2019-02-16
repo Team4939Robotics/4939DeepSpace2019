@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevator = new ElevatorSubsystem();
   public static OI m_oi;
   public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
+  private static boolean prevPressed = false;
 
   //Create Network Table Objects
   NetworkTableEntry x;
@@ -162,16 +163,18 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
-    SmartDashboard.putNumber("Elevator Encoder Count: ", elevator.getCount());
+    SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
 
-    if(m_oi.leftTrigger()){
+    if(m_oi.leftTrigger() && !prevPressed){
       new ManualElevatorDown().start();
+      prevPressed = true;
     }
-    else if (m_oi.rightTrigger()){
+    else if (m_oi.rightTrigger() && !prevPressed){
       new ManualElevatorUp().start();
+      prevPressed = true;
     }
-    else{
-      elevator.runElevator(0);
+    else if (!m_oi.rightTrigger() && !m_oi.leftTrigger()){
+      prevPressed = false;
     }
   }
 

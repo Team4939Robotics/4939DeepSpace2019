@@ -28,8 +28,8 @@ public class NumberConstants {
 	public static final double nativeToInches = 201.66;
 
 	//elevator encoder
-	public static final double elevatorEncoderMaxDist = 1;
-	public static final double elevatorEncoderMaxCount = 0;
+	public static final double elevatorEncoderMaxDist = 54.75;
+	public static final double elevatorEncoderMaxCount = 24881;
 	public static final double elevatorEncoderDistPerCount = elevatorEncoderMaxDist/elevatorEncoderMaxCount;
 	
 	//control loop

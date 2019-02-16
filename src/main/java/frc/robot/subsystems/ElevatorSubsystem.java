@@ -40,7 +40,7 @@ public class ElevatorSubsystem extends Subsystem {
   }
 
   public void setElevatorHeight(double height, double speed, double epsilon){
-    runElevator(elevatorPID.calcPID(height, getCount(), epsilon)*-speed);
+    runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon)*-speed);
   }
 
   // public void setNeutralToCoast(){
@@ -53,16 +53,16 @@ public class ElevatorSubsystem extends Subsystem {
   //Encoder methods
   //
   public double getEncoderDist(){
-    return elevatorA.getSelectedSensorPosition();
+    return elevatorA.getSelectedSensorPosition()*NumberConstants.elevatorEncoderDistPerCount;
   }
 
   public void resetEncoder(){
     elevatorA.setSelectedSensorPosition(0);
   }
 
-  public int getCount(){
-    return elevatorA.getSelectedSensorPosition();
-  }
+  // public int getCount(){
+  //   return elevatorA.getSelectedSensorPosition();
+  // }
 
   @Override
   public void initDefaultCommand() {

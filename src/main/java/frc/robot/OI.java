@@ -40,16 +40,16 @@ public class OI {
 
 	public OI() {
 		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
-		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5)); //for testing
+		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5));
 
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
-		// HatchPusher.whenPressed(new HatchPusherCommand());
-		HatchPusher.whenPressed(new resetEncoder());
+		HatchPusher.whenPressed(new HatchPusherCommand());
 
 		BallIntake.whenPressed(new PresetIntakeCommand());
 		BallIntake.whenReleased(new StopIntakeCommand());
-		BallOuttake.whenPressed(new PresetOuttakeCommand());
-		BallOuttake.whenReleased(new StopIntakeCommand());
+		// BallOuttake.whenPressed(new PresetOuttakeCommand());
+		// BallOuttake.whenReleased(new StopIntakeCommand());
+		BallOuttake.whenPressed(new resetEncoder());
 
 		// ElevatorStage3.whenActive(new ElevatorStage3());
 		// ElevatorStage2.whenActive(new ElevatorStage2());

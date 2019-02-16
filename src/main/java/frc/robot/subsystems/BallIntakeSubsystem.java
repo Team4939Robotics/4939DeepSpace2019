@@ -36,9 +36,8 @@ public class BallIntakeSubsystem extends Subsystem {
     intakeMotorB.set(speed);
   }
 
-  public void pushBall(){
-    pushServo.setAngle(180);
-    pushServo.setAngle(0);
+  public void pushBall(int angle){
+    pushServo.setAngle(angle);
   }
 
   @Override

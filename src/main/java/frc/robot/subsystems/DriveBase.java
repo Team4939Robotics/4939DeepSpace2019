@@ -18,6 +18,7 @@ import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.PIDController;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 

@@ -27,8 +27,8 @@ public class OI {
 	private Button HatchGrabber = new JoystickButton(DriverController, 6);
 	private Button BallIntake = new JoystickButton(DriverController, 4);
 	private Button BallOuttake = new JoystickButton(DriverController, 2);
-	private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
-	private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
+	// private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
+	// private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
 	private Button ElevatorStage1 = new JoystickButton(DriverController, 5);
 
 	private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
@@ -51,8 +51,8 @@ public class OI {
 		BallOuttake.whenPressed(new PresetOuttakeCommand());
 		BallOuttake.whenReleased(new StopIntakeCommand());
 
-		ElevatorStage3.whenActive(new ElevatorStage3());
-		ElevatorStage2.whenActive(new ElevatorStage2());
+		// ElevatorStage3.whenActive(new ElevatorStage3());
+		// ElevatorStage2.whenActive(new ElevatorStage2());
 		ElevatorStage1.whenPressed(new ElevatorStage1());
 
 		ManualElevatorUp.whenPressed(new ManualElevatorUp());
@@ -77,6 +77,21 @@ public class OI {
 			return 0.0;
 		else
 			return rightdrivestick;
+	}
+
+	public boolean rightTrigger(){
+		double rightTrig = DriverController.getRawAxis(3);
+		if (Math.abs(rightTrig) < 0.5)
+			return false;
+		else
+			return true;
+	}
+	public boolean leftTrigger(){
+		double leftTrig = DriverController.getRawAxis(2);
+		if (Math.abs(leftTrig) < 0.5)
+			return false;
+		else
+			return true;
 	}
 	
 	public double intake() {

@@ -162,6 +162,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
+    SmartDashboard.putNumber("Elevator Encoder Count: ", elevator.getCount());
+
+    if(m_oi.leftTrigger()){
+      new ManualElevatorDown().start();
+    }
+    else if (m_oi.rightTrigger()){
+      new ManualElevatorUp().start();
+    }
+    else{
+      elevator.runElevator(0);
+    }
   }
 
   /**

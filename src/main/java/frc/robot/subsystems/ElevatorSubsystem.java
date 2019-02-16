@@ -40,7 +40,7 @@ public class ElevatorSubsystem extends Subsystem {
   }
 
   public void setElevatorHeight(double height, double speed, double epsilon){
-    runElevator(elevatorPID.calcPID(height, getCount(), epsilon)*speed);
+    runElevator(elevatorPID.calcPID(height, getCount(), epsilon)*-speed);
   }
 
   // public void setNeutralToCoast(){

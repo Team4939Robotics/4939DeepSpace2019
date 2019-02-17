@@ -12,8 +12,6 @@ import frc.robot.commands.BallIntakeCommand;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import java.util.concurrent.TimeUnit;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**

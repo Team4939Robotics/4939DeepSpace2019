@@ -56,8 +56,14 @@ public class TankDrive extends Command {
 		else if(deltaR <= -DELTA_LIMIT)
 		  inputR -= RAMP_DOWN_CONSTANT;
 		
-		Robot.dt.runLeftSideDrive(inputL);
-		Robot.dt.runRightSideDrive(inputR);
+		if(Robot.dt.reverse){
+			Robot.dt.runLeftSideDrive(inputR);
+			Robot.dt.runRightSideDrive(inputL);
+		}
+		else{
+			Robot.dt.runLeftSideDrive(inputL);
+			Robot.dt.runRightSideDrive(inputR);
+		}
 		
 		prevInputL = inputL;
 		prevInputR = inputR;

@@ -23,10 +23,10 @@ public class ToggleDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.dt.reverse == 1)
-      Robot.dt.reverse = -1;
-    else if (Robot.dt.reverse == -1)
-      Robot.dt.reverse = 1;
+    if (Robot.dt.reverse == false)
+      Robot.dt.reverse = true;
+    else if (Robot.dt.reverse == true)
+      Robot.dt.reverse = false;
   }
 
   // Make this return true when this Command no longer needs to run execute()

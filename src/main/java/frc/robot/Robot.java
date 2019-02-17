@@ -39,9 +39,8 @@ public class Robot extends TimedRobot {
   private static boolean prevPressed = false;
 
   //Create Network Table Objects
-  NetworkTableEntry x;
-  NetworkTableEntry y;
-  NetworkTableEntry isDetected;
+  NetworkTableEntry findDistance;
+  NetworkTableEntry tapeFound;
 
 
   //Preferences prefs;
@@ -72,9 +71,9 @@ public class Robot extends TimedRobot {
       // Set up and populate the networkTable
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("SmartDashboard");
-    x = table.getEntry("X");
-    y = table.getEntry("Y");
-    isDetected= table.getEntry("isDetected");
+    findDistance = table.getEntry("findDistance");
+    tapeFound= table.getEntry("tapeFound");
+
 
   }
 

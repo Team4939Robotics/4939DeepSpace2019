@@ -44,7 +44,7 @@ public class DriveBase extends Subsystem {
 
   public PIDController gyroPID;
 
-  public int reverse = 1;
+  public boolean reverse = false;
   
   public DriveBase() {
     try{
@@ -71,16 +71,24 @@ public class DriveBase extends Subsystem {
   }
   
   public void runLeftSideDrive(double leftDriveStick) {
-    leftDriveFront.set(leftDriveStick*reverse);
-    leftDriveMiddle.set(leftDriveStick*reverse);
-    leftDriveBack.set(leftDriveStick*reverse);
+    int invert = 1;
+    if (reverse)
+      invert = -1;
+
+    leftDriveFront.set(leftDriveStick*invert);
+    leftDriveMiddle.set(leftDriveStick*invert);
+    leftDriveBack.set(leftDriveStick*invert);
 
     //Runs left drive 
   }
   public void runRightSideDrive(double rightDriveStick) {
-    rightDriveFront.set(rightDriveStick*reverse);
-    rightDriveMiddle.set(rightDriveStick*reverse);
-    rightDriveBack.set(rightDriveStick*reverse);
+    int invert = 1;
+    if (reverse)
+      invert = -1;
+
+    rightDriveFront.set(rightDriveStick*invert);
+    rightDriveMiddle.set(rightDriveStick*invert);
+    rightDriveBack.set(rightDriveStick*invert);
 
   // Runs right drive
   }

@@ -36,7 +36,7 @@ public class OI {
 	private Button HatchPusher = new JoystickButton(OperatorController, 2);
 	private Button FrontClimbPiston = new JoystickButton(OperatorController, 11);
 	private Button BackClimbPiston = new JoystickButton(OperatorController, 12);
-	private Button PushServo = new JoystickButton(OperatorController, 1);
+	private Button BallFastOuttake = new JoystickButton(OperatorController, 1);
 	private Button BallIntake = new JoystickButton(OperatorController, 4);
 	private Button BallOuttake = new JoystickButton(OperatorController, 3);
 
@@ -52,18 +52,19 @@ public class OI {
 		BallIntake.whenReleased(new StopIntakeCommand());
 		BallOuttake.whenPressed(new PresetOuttakeCommand());
 		BallOuttake.whenReleased(new StopIntakeCommand());
-		EncoderReset.whenPressed(new resetEncoder());
+		BallFastOuttake.whenPressed(new BallFastOuttakeCommand());
+		BallFastOuttake.whenReleased(new StopIntakeCommand());
 
 		// ElevatorStage3.whenActive(new ElevatorStage3());
 		// ElevatorStage2.whenActive(new ElevatorStage2());
 		ElevatorStage1.whenPressed(new ElevatorStage1());
+		EncoderReset.whenPressed(new resetEncoder());
 
 		ManualElevatorUp.whenPressed(new ManualElevatorUp());
 		ManualElevatorUp.whenReleased(new StopElevator());
 		ManualElevatorDown.whenPressed(new ManualElevatorDown());
 		ManualElevatorDown.whenReleased(new StopElevator());
 
-		PushServo.whenPressed(new PushBallCommand());
 	}
 	
 	public double left() {

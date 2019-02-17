@@ -30,10 +30,7 @@ public class DriveBase extends Subsystem {
   public static WPI_TalonSRX rightDriveFront = new WPI_TalonSRX(RobotMap.RIGHT_FRONT.value);
   public static WPI_TalonSRX rightDriveMiddle = new WPI_TalonSRX(RobotMap.RIGHT_MIDDLE.value);
   public static WPI_TalonSRX rightDriveBack = new WPI_TalonSRX(RobotMap.RIGHT_BACK.value);
-
-  // Shows the joystick configurations for left and right drive/
-
-    
+  
   private AHRS ahrs;
 
   public Encoder leftDriveEncoder;
@@ -46,6 +43,8 @@ public class DriveBase extends Subsystem {
       NumberConstants.MAX_ACCELERATION, NumberConstants.kP, NumberConstants.kD);
 
   public PIDController gyroPID;
+
+  public int reverse = 1;
   
   public DriveBase() {
     try{
@@ -72,16 +71,16 @@ public class DriveBase extends Subsystem {
   }
   
   public void runLeftSideDrive(double leftDriveStick) {
-    leftDriveFront.set(leftDriveStick);
-    leftDriveMiddle.set(leftDriveStick);
-    leftDriveBack.set(leftDriveStick);
+    leftDriveFront.set(leftDriveStick*reverse);
+    leftDriveMiddle.set(leftDriveStick*reverse);
+    leftDriveBack.set(leftDriveStick*reverse);
 
     //Runs left drive 
   }
   public void runRightSideDrive(double rightDriveStick) {
-    rightDriveFront.set(rightDriveStick);
-    rightDriveMiddle.set(rightDriveStick);
-    rightDriveBack.set(rightDriveStick);
+    rightDriveFront.set(rightDriveStick*reverse);
+    rightDriveMiddle.set(rightDriveStick*reverse);
+    rightDriveBack.set(rightDriveStick*reverse);
 
   // Runs right drive
   }

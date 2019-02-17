@@ -24,7 +24,7 @@ public class PushBallCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.pushBall(180);
+    Robot.BI.pushBall(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class PushBallCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.BI.pushBall(0);
+    Robot.BI.pushBall(180);
   }
 
   // Called when another command which requires one or more of the same

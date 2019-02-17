@@ -166,14 +166,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
 
     if(m_oi.leftTrigger() && !prevPressed){
+      // new ElevatorStage2().start();
       new ManualElevatorDown().start();
       prevPressed = true;
     }
     else if (m_oi.rightTrigger() && !prevPressed){
+      // new ElevatorStage3().start();
       new ManualElevatorUp().start();
       prevPressed = true;
     }
     else if (!m_oi.rightTrigger() && !m_oi.leftTrigger()){
+      new StopElevator().start();
       prevPressed = false;
     }
   }

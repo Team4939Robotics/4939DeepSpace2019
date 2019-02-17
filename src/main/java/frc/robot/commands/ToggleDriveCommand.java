@@ -7,51 +7,42 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class PresetOuttakeCommand extends Command {
-  Timer timer = new Timer();
-
-  public PresetOuttakeCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.BI);
+public class ToggleDriveCommand extends Command {
+  public ToggleDriveCommand() {
+    requires(Robot.dt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.useIntake(-0.5);
-    if (timer.get() >= 0.6){
-      Robot.BI.pushBall(0);
-    }
-    }
+    if (Robot.dt.reverse == 1)
+      Robot.dt.reverse = -1;
+    else if (Robot.dt.reverse == -1)
+      Robot.dt.reverse = 1;
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // Robot.BI.useIntake(0);
-    // Robot.BI.pushBall(180);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    cancel();
   }
 }

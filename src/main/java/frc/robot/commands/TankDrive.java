@@ -13,13 +13,13 @@ import frc.robot.Robot;
 public class TankDrive extends Command {
   
 	/** The Constant DELTA_LIMIT. */
-	private static final double DELTA_LIMIT = 0.75;
+	private static final double DELTA_LIMIT = 0.58;
 	
 	/** The Constant RAMP_UP_CONSTANT. */
-	private static final double RAMP_UP_CONSTANT = 0.05;
+	private static final double RAMP_UP_CONSTANT = 0.03;
 	
 	/** The Constant RAMP_DOWN_CONSTANT. */
-	private static final double RAMP_DOWN_CONSTANT = 0.05;
+	private static final double RAMP_DOWN_CONSTANT = 0.03;
 	
 	/** Variables used for joystick ramping*/
 	double deltaL = 0;

@@ -28,11 +28,6 @@ public class BallIntakeSubsystem extends Subsystem {
   
   public void useIntake(double speed) {
     intakeMotorA.set(speed);
-    intakeMotorB.set(-speed);
-  }
-
-  public void useOuttake(double speed) {
-    intakeMotorA.set(-speed);
     intakeMotorB.set(speed);
   }
 

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 import frc.robot.commands.BallIntakeCommand;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,7 +24,9 @@ public class BallIntakeSubsystem extends Subsystem {
   public static WPI_TalonSRX intakeMotorA = new WPI_TalonSRX(RobotMap.INTAKE_MOTOR_A.value);
   public static WPI_TalonSRX intakeMotorB = new WPI_TalonSRX(RobotMap.INTAKE_MOTOR_B.value);
   public static Servo pushServo = new Servo(RobotMap.SERVO_MOTOR.value);
-  
+  public static DoubleSolenoid hopperPiston = new DoubleSolenoid(0,RobotMap.HOPPER_PISTON_A.value, RobotMap.HOPPER_PISTON_B.value);
+  private boolean hopperUp = false;
+
   public void useIntake(double speed) {
     intakeMotorA.set(speed);
     intakeMotorB.set(speed);
@@ -33,9 +36,23 @@ public class BallIntakeSubsystem extends Subsystem {
     pushServo.setAngle(angle);
   }
 
+  public void hopperUp(){
+    hopperPiston.set(DoubleSolenoid.Value.kForward);
+    hopperUp = true;
+  }
+
+  public void hopperDown(){
+    hopperPiston.set(DoubleSolenoid.Value.kReverse);
+    hopperUp = false;
+  }
+
+  public boolean isUp(){
+    return hopperUp;
+  }
+
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new BallIntakeCommand());
+    // setDefaultCommand(new BallIntakeCommand());
   }
 
 }

@@ -33,8 +33,8 @@ public class DriveBase extends Subsystem {
   
   private AHRS ahrs;
 
-  public Encoder leftDriveEncoder;
-  public Encoder rightDriveEncoder;
+  // public Encoder leftDriveEncoder;
+  // public Encoder rightDriveEncoder;
   // initialize two encoders leftDrive and rightDrive
 
   public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
@@ -54,17 +54,17 @@ public class DriveBase extends Subsystem {
     }
     
     //Initialize Encoders
-    leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
-        RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+    // leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
+    //     RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
 
-    leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
-    //sets the multiplier used to determine the distance driven based on the count value from the leftDriveEncoder.
+    // leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+    // //sets the multiplier used to determine the distance driven based on the count value from the leftDriveEncoder.
 
-    rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
-        RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+    // rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
+    //     RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
         
-    rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
-        //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
+    // rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+    //     //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
 
     
     gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD, 0);
@@ -129,33 +129,33 @@ public class DriveBase extends Subsystem {
   
   //Encoder Methods
   
-  public double getLeftEncoderDist() {
-    return leftDriveEncoder.getDistance();
-  //gets the distance from the robot from the last given distance given from the left encoderand returns the same distance from the last reset
+  // public double getLeftEncoderDist() {
+  //   return leftDriveEncoder.getDistance();
+  // //gets the distance from the robot from the last given distance given from the left encoderand returns the same distance from the last reset
   
-  }
+  // }
   
-  public double getRightEncoderDist() {
-    return rightDriveEncoder.getDistance();
-    //gets the distance from the robot from the last given distance given from the left encoder and returns the same distance from the last reset
+  // public double getRightEncoderDist() {
+  //   return rightDriveEncoder.getDistance();
+  //   //gets the distance from the robot from the last given distance given from the left encoder and returns the same distance from the last reset
 
-  }
+  // }
 
-  public double getLeftEncoderRate(){
-    return leftDriveEncoder.getRate();
-    //gets the current rate of the left encoder and returns the value
-  }
+  // public double getLeftEncoderRate(){
+  //   return leftDriveEncoder.getRate();
+  //   //gets the current rate of the left encoder and returns the value
+  // }
 
-  public double getRightEncoderRate(){
-    return rightDriveEncoder.getRate();
-     //gets the current rate of the left encoder and returns the value 
-  }
+  // public double getRightEncoderRate(){
+  //   return rightDriveEncoder.getRate();
+  //    //gets the current rate of the left encoder and returns the value 
+  // }
   
-  public void resetEncoders() {
-    leftDriveEncoder.reset();
-    rightDriveEncoder.reset();
-    // resets the enocder distance and the current count to zero on the encoder
-  }
+  // public void resetEncoders() {
+  //   leftDriveEncoder.reset();
+  //   rightDriveEncoder.reset();
+  //   // resets the enocder distance and the current count to zero on the encoder
+  // }
 
   //
   //Profiling

@@ -1,33 +1,33 @@
-package frc.robot.subsystems;
+// package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
+// import edu.wpi.first.wpilibj.AnalogInput;
 
-public class UltrasonicCodeTesting {
+// public class UltrasonicCodeTesting {
     
-    AnalogInput ultra = new AnalogInput(0);
+//     AnalogInput ultra = new AnalogInput(0);
     
     
-    private final int SCALING_FACTOR = 10;
+//     private final int SCALING_FACTOR = 10;
     
-    /** Returns the distance measured in inches.  */
+//     /** Returns the distance measured in inches.  */
 
-    public double getInches(){
-        double volts = ultra.getVoltage();
-        double inches = volts * SCALING_FACTOR;
-        return inches;
-    }
+//     public double getInches(){
+//         double volts = ultra.getVoltage();
+//         double inches = volts * SCALING_FACTOR;
+//         return inches;
+//     }
     
-    public double getVoltage(){
-        double volts = ultra.getVoltage();
-        return volts;
-    }
+//     public double getVoltage(){
+//         double volts = ultra.getVoltage();
+//         return volts;
+//     }
 
-    public void readValue(){
-        System.out.println("Distance: " + getInches());
-        System.out.println("Voltage: " + getVoltage());
+//     public void readValue(){
+//         System.out.println("Distance: " + getInches());
+//         System.out.println("Voltage: " + getVoltage());
 
-    }
+//     }
 
     
-}
+// }
     

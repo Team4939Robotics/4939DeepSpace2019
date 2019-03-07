@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PresetOuttakeCommand extends Command {
-  Timer timer = new Timer();
+  // Timer timer = new Timer();
 
   public PresetOuttakeCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -23,15 +23,15 @@ public class PresetOuttakeCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
+    // timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.BI.useIntake(-0.3);
-    if (timer.get() >= 0.6)
-      Robot.BI.pushBall(180);
+    // if (timer.get() >= 0.6)
+    //   Robot.BI.pushBall(180);
     }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -14,7 +14,7 @@ public class TestSequence extends CommandGroup {
    * Add your docs here.
    */
   public TestSequence() {
-    addSequential(new IntakeTest());
+    // addSequential(new IntakeTest());
     addSequential(new ElevatorUpTest());
     addSequential(new ElevatorDownTest());
     addSequential(new HatchTest());

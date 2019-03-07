@@ -32,6 +32,11 @@ public class NumberConstants {
 	public static final double elevatorEncoderMaxCount = 24881;
 	public static final double elevatorEncoderDistPerCount = elevatorEncoderMaxDist/elevatorEncoderMaxCount;
 	
+	//intake pivot encoder
+	public static final double pivotEncoderMaxCount = 24881;
+	public static final double pivotEncoderAnglePerCount = 1/pivotEncoderMaxCount;
+	
+
 	//control loop
 	public static final double deltaT = 0.020;
 	
@@ -48,4 +53,9 @@ public class NumberConstants {
 	public static double elevatorKI = 0.0;
 	public static double elevatorkD = 0.0;
 	public static double elevatorkF = 0.0; 
+	//intake pivot PID constants
+	public static double pivotKP = 0.0;
+	public static double pivotKI = 0.0;
+	public static double pivotKD = 0.0;
+	public static double pivotKF = 0.0;
 }

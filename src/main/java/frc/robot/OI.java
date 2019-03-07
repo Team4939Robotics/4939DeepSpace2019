@@ -52,7 +52,7 @@ public class OI {
 	private Button BallIntake = new JoystickButton(OperatorController, 4);
 	private Button BallOuttake = new JoystickButton(OperatorController, 3);
 	private Button BallFastOuttake = new JoystickButton(OperatorController, 1);
-	private Button HopperUpDown = new JoystickButton(OperatorController, 11);
+	// private Button HopperUpDown = new JoystickButton(OperatorController, 11);
 
 	//private Button ElevatorStage2 = new JoystickButton(OperatorController,5);
 	//private Button ElevatorStage3 = new JoystickButton(OperatorController,6 );
@@ -72,7 +72,7 @@ public class OI {
 		BallOuttake.whenReleased(new StopIntakeCommand());
 		BallFastOuttake.whenPressed(new BallFastOuttakeCommand());
 		BallFastOuttake.whenReleased(new StopIntakeCommand());
-		HopperUpDown.whenPressed(new HopperUpDown());
+		// HopperUpDown.whenPressed(new HopperUpDown());
 
 		// ElevatorStage3.whenActive(new ElevatorStage3());
 		// ElevatorStage2.whenActive(new ElevatorStage2());

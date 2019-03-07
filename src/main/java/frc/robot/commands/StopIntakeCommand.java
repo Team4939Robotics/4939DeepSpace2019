@@ -24,7 +24,7 @@ public class StopIntakeCommand extends Command {
   @Override
   protected void execute() {
     Robot.BI.useIntake(0);
-    Robot.BI.pushBall(0);
+    // Robot.BI.pushBall(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

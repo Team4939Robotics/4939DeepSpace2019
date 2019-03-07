@@ -27,8 +27,10 @@ public enum RobotMap {
 	//ELEVATOR_B(8),
 
 	//Ball Intake Motors
-	INTAKE_MOTOR_A(9),
-	INTAKE_MOTOR_B(10),
+	INTAKE_MOTOR_A(8),
+	// INTAKE_MOTOR_B(10),
+	INTAKE_PIVOT_A(9),
+	INTAKE_PIVOT_B(10),
 
 	//Drive Encoders
 	LEFT_DRIVE_ENCODER_A(1),

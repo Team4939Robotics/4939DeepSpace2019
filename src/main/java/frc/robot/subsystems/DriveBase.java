@@ -30,14 +30,11 @@ public class DriveBase extends Subsystem {
   public static WPI_TalonSRX rightDriveFront = new WPI_TalonSRX(RobotMap.RIGHT_FRONT.value);
   public static WPI_TalonSRX rightDriveMiddle = new WPI_TalonSRX(RobotMap.RIGHT_MIDDLE.value);
   public static WPI_TalonSRX rightDriveBack = new WPI_TalonSRX(RobotMap.RIGHT_BACK.value);
-
-  // Shows the joystick configurations for left and right drive/
-
-    
+  
   private AHRS ahrs;
 
-  public Encoder leftDriveEncoder;
-  public Encoder rightDriveEncoder;
+  // public Encoder leftDriveEncoder;
+  // public Encoder rightDriveEncoder;
   // initialize two encoders leftDrive and rightDrive
 
   public ProfileGenerator dtGenerator = new ProfileGenerator(NumberConstants.TOP_SPEED, 
@@ -46,6 +43,8 @@ public class DriveBase extends Subsystem {
       NumberConstants.MAX_ACCELERATION, NumberConstants.kP, NumberConstants.kD);
 
   public PIDController gyroPID;
+
+  public boolean reverse = false;
   
   public DriveBase() {
     try{
@@ -55,33 +54,41 @@ public class DriveBase extends Subsystem {
     }
     
     //Initialize Encoders
-    leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
-        RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+    // leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A.value,
+    //     RobotMap.LEFT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
 
-    leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
-    //sets the multiplier used to determine the distance driven based on the count value from the leftDriveEncoder.
+    // leftDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+    // //sets the multiplier used to determine the distance driven based on the count value from the leftDriveEncoder.
 
-    rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
-        RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
+    // rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A.value,
+    //     RobotMap.RIGHT_DRIVE_ENCODER_B.value, false, Encoder.EncodingType.k4X);
         
-    rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
-        //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
+    // rightDriveEncoder.setDistancePerPulse(NumberConstants.driveEncoderDistPerTick);
+    //     //sets the multiplier used to determine the distance driven based on the count value from the RightDriveEncoder.
 
     
     gyroPID = new PIDController(NumberConstants.gyroKP, NumberConstants.gyroKI, NumberConstants.gyroKD, 0);
   }
   
   public void runLeftSideDrive(double leftDriveStick) {
-    leftDriveFront.set(leftDriveStick);
-    leftDriveMiddle.set(leftDriveStick);
-    leftDriveBack.set(leftDriveStick);
+    int invert = 1;
+    if (reverse)
+      invert = -1;
+
+    leftDriveFront.set(leftDriveStick*invert);
+    leftDriveMiddle.set(leftDriveStick*invert);
+    leftDriveBack.set(leftDriveStick*invert);
 
     //Runs left drive 
   }
   public void runRightSideDrive(double rightDriveStick) {
-    rightDriveFront.set(rightDriveStick);
-    rightDriveMiddle.set(rightDriveStick);
-    rightDriveBack.set(rightDriveStick);
+    int invert = 1;
+    if (reverse)
+      invert = -1;
+
+    rightDriveFront.set(rightDriveStick*invert);
+    rightDriveMiddle.set(rightDriveStick*invert);
+    rightDriveBack.set(rightDriveStick*invert);
 
   // Runs right drive
   }
@@ -122,33 +129,33 @@ public class DriveBase extends Subsystem {
   
   //Encoder Methods
   
-  public double getLeftEncoderDist() {
-    return leftDriveEncoder.getDistance();
-  //gets the distance from the robot from the last given distance given from the left encoderand returns the same distance from the last reset
+  // public double getLeftEncoderDist() {
+  //   return leftDriveEncoder.getDistance();
+  // //gets the distance from the robot from the last given distance given from the left encoderand returns the same distance from the last reset
   
-  }
+  // }
   
-  public double getRightEncoderDist() {
-    return rightDriveEncoder.getDistance();
-    //gets the distance from the robot from the last given distance given from the left encoder and returns the same distance from the last reset
+  // public double getRightEncoderDist() {
+  //   return rightDriveEncoder.getDistance();
+  //   //gets the distance from the robot from the last given distance given from the left encoder and returns the same distance from the last reset
 
-  }
+  // }
 
-  public double getLeftEncoderRate(){
-    return leftDriveEncoder.getRate();
-    //gets the current rate of the left encoder and returns the value
-  }
+  // public double getLeftEncoderRate(){
+  //   return leftDriveEncoder.getRate();
+  //   //gets the current rate of the left encoder and returns the value
+  // }
 
-  public double getRightEncoderRate(){
-    return rightDriveEncoder.getRate();
-     //gets the current rate of the left encoder and returns the value 
-  }
+  // public double getRightEncoderRate(){
+  //   return rightDriveEncoder.getRate();
+  //    //gets the current rate of the left encoder and returns the value 
+  // }
   
-  public void resetEncoders() {
-    leftDriveEncoder.reset();
-    rightDriveEncoder.reset();
-    // resets the enocder distance and the current count to zero on the encoder
-  }
+  // public void resetEncoders() {
+  //   leftDriveEncoder.reset();
+  //   rightDriveEncoder.reset();
+  //   // resets the enocder distance and the current count to zero on the encoder
+  // }
 
   //
   //Profiling

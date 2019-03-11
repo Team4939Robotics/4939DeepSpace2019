@@ -5,44 +5,40 @@
 // /* the project.                                                               */
 // /*----------------------------------------------------------------------------*/
 
-// package frc.robot.commands;
+// package frc.robot.commands.TestSequence;
 
 // import edu.wpi.first.wpilibj.command.Command;
 // import frc.robot.Robot;
 
-// public class UltrasonicFollow extends Command {
-//   public UltrasonicFollow() {
-//     // Use requires() here to declare subsystem dependencies
-//     // eg. requires(chassis);
-//     requires(Robot.dt);
+// public class IntakeTest extends Command {
+//   public IntakeTest() {
+//     requires(Robot.BI);
 //   }
 
 //   // Called just before this Command runs the first time
 //   @Override
 //   protected void initialize() {
+//     setTimeout(1);
 //   }
 
 //   // Called repeatedly when this Command is scheduled to run
 //   @Override
 //   protected void execute() {
-//     Robot.dt.runLeftSideDrive(0.1);
-//     Robot.dt.runRightSideDrive(0.1);
+//     Robot.BI.useIntake(0.5);
+//     Robot.BI.pushBall(180);
 //   }
 
 //   // Make this return true when this Command no longer needs to run execute()
 //   @Override
 //   protected boolean isFinished() {
-//     if (Robot.ultrasonic.getInches() < 3){
-//       return true;
-//     }
-//     return false;
+//     return isTimedOut();
 //   }
 
 //   // Called once after isFinished returns true
 //   @Override
 //   protected void end() {
-//     Robot.dt.runLeftSideDrive(0);
-//     Robot.dt.runRightSideDrive(0);
+//     Robot.BI.useIntake(0);
+//     Robot.BI.pushBall(0);
 //   }
 
 //   // Called when another command which requires one or more of the same

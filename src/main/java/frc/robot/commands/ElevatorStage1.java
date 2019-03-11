@@ -23,20 +23,18 @@ public class ElevatorStage1 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorHeight(0, 0.5, 1);
+    Robot.elevator.setElevatorHeight(0, 1, 0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.elevator.elevatorPID.isDone();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.runElevator(0);
-    Robot.elevator.resetEncoder();
   }
 
   // Called when another command which requires one or more of the same

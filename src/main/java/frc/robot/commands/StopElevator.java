@@ -23,7 +23,12 @@ public class StopElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.runElevator(0);
+    double i =1;
+    while(i>0){
+      i=i-0.1;
+      Robot.elevator.runElevator(0);
+      
+    }
     // Robot.elevator.setNeutralToBrake();
   }
 

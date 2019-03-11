@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class StopIntakeCommand extends Command {
-  public StopIntakeCommand() {
-    requires(Robot.BI);
+public class ToggleDriveCommand extends Command {
+  public ToggleDriveCommand() {
+    requires(Robot.dt);
   }
 
   // Called just before this Command runs the first time
@@ -23,8 +23,10 @@ public class StopIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.useIntake(0);
-    // Robot.BI.pushBall(0);
+    if (Robot.dt.reverse == false)
+      Robot.dt.reverse = true;
+    else if (Robot.dt.reverse == true)
+      Robot.dt.reverse = false;
   }
 
   // Make this return true when this Command no longer needs to run execute()

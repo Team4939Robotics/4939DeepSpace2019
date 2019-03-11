@@ -8,6 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.*;
+//import frc.robot.commands.TestSequence.TestSequence;
 import frc.robot.commands.auto.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
@@ -22,45 +23,76 @@ public class OI {
 	public Joystick OperatorController = new Joystick(1);
 	// declares the two controllers
 
+	//
+	// Driver Controller
+	//
 	private Button TurnLeft = new JoystickButton(DriverController, 3);
 	private Button TurnRight = new JoystickButton(DriverController, 1);
+	private Button DriveReverse = new JoystickButton(DriverController, 4);
+
 	private Button HatchGrabber = new JoystickButton(DriverController, 6);
-	private Button BallIntake = new JoystickButton(DriverController, 4);
-	private Button BallOuttake = new JoystickButton(DriverController, 2);
+
 	// private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
 	// private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
 	private Button ElevatorStage1 = new JoystickButton(DriverController, 5);
-
+	private Button EncoderReset = new JoystickButton(DriverController, 8);
+	
+	//private Button TestSequence = new JoystickButton(DriverController, 8);
+	// 
+	// Operator Controller
+	// 
 	private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
 	private Button ManualElevatorDown = new JoystickButton(OperatorController, 7);
-	private Button HatchPusher = new JoystickButton(OperatorController, 2);
-	private Button FrontClimbPiston = new JoystickButton(OperatorController, 11);
-	private Button BackClimbPiston = new JoystickButton(OperatorController, 12);
-	private Button PushServo = new JoystickButton(OperatorController, 1);
+
+	private Button HatchPusher =  new JoystickButton(OperatorController, 12);
+
+	//private Button FrontClimbPiston = new JoystickButton(OperatorController, 5);
+	private Button BackClimbPiston = new JoystickButton(OperatorController, 6);
+
+	private Button BallIntake = new JoystickButton(OperatorController, 4);
+	private Button BallOuttake = new JoystickButton(OperatorController, 3);
+	private Button BallFastOuttake = new JoystickButton(OperatorController, 1);
+	// private Button HopperUpDown = new JoystickButton(OperatorController, 11);
+
+	//private Button ElevatorStage2 = new JoystickButton(OperatorController,5);
+	//private Button ElevatorStage3 = new JoystickButton(OperatorController,6 );
+	//private Button ElevatorStage1 = new JoystickButton(OperatorController,9 );
 
 	public OI() {
 		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
 		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5));
+		DriveReverse.whenPressed(new ToggleDriveCommand());
 
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
 		HatchPusher.whenPressed(new HatchPusherCommand());
 
 		BallIntake.whenPressed(new PresetIntakeCommand());
 		BallIntake.whenReleased(new StopIntakeCommand());
-		// BallOuttake.whenPressed(new PresetOuttakeCommand());
-		// BallOuttake.whenReleased(new StopIntakeCommand());
-		BallOuttake.whenPressed(new resetEncoder());
+		BallOuttake.whenPressed(new PresetOuttakeCommand());
+		BallOuttake.whenReleased(new StopIntakeCommand());
+		BallFastOuttake.whenPressed(new BallFastOuttakeCommand());
+		BallFastOuttake.whenReleased(new StopIntakeCommand());
+		// HopperUpDown.whenPressed(new HopperUpDown());
 
 		// ElevatorStage3.whenActive(new ElevatorStage3());
 		// ElevatorStage2.whenActive(new ElevatorStage2());
-		ElevatorStage1.whenPressed(new ElevatorStage1());
+		//ElevatorStage1.whenPressed(new ElevatorStage1());
+		//ElevatorStage2.whenPressed(new ElevatorStage2());
+		//ElevatorStage3.whenPressed(new ElevatorStage3());
+
+		EncoderReset.whenPressed(new resetEncoder());
 
 		ManualElevatorUp.whenPressed(new ManualElevatorUp());
 		ManualElevatorUp.whenReleased(new StopElevator());
 		ManualElevatorDown.whenPressed(new ManualElevatorDown());
 		ManualElevatorDown.whenReleased(new StopElevator());
+		ElevatorStage1.whenPressed(new ElevatorStage1());
 
-		PushServo.whenPressed(new PushBallCommand());
+		// FrontClimbPiston.whenPressed(new ClimbFrontUpDown());
+		BackClimbPiston.whenPressed(new ClimbBackUpDown());
+
+		//TestSequence.whenPressed(new TestSequence());
+
 	}
 	
 	public double left() {
@@ -93,6 +125,7 @@ public class OI {
 		else
 			return true;
 	}
+
 	
 	public double intake() {
 		double intakeWheel = OperatorController.getRawAxis(3);

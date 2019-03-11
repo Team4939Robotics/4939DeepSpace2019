@@ -13,13 +13,13 @@ import frc.robot.Robot;
 public class TankDrive extends Command {
   
 	/** The Constant DELTA_LIMIT. */
-	private static final double DELTA_LIMIT = 0.75;
+	private static final double DELTA_LIMIT = 0.40;
 	
 	/** The Constant RAMP_UP_CONSTANT. */
-	private static final double RAMP_UP_CONSTANT = 0.05;
+	private static final double RAMP_UP_CONSTANT = 0.01;
 	
 	/** The Constant RAMP_DOWN_CONSTANT. */
-	private static final double RAMP_DOWN_CONSTANT = 0.05;
+	private static final double RAMP_DOWN_CONSTANT = 0.01;
 	
 	/** Variables used for joystick ramping*/
 	double deltaL = 0;
@@ -56,8 +56,14 @@ public class TankDrive extends Command {
 		else if(deltaR <= -DELTA_LIMIT)
 		  inputR -= RAMP_DOWN_CONSTANT;
 		
-		Robot.dt.runLeftSideDrive(inputL);
-		Robot.dt.runRightSideDrive(inputR);
+		if(Robot.dt.reverse){
+			Robot.dt.runLeftSideDrive(-inputR);
+			Robot.dt.runRightSideDrive(-inputL);
+		}
+		else{
+			Robot.dt.runLeftSideDrive(inputL);
+			Robot.dt.runRightSideDrive(inputR);
+		}
 		
 		prevInputL = inputL;
 		prevInputR = inputR;

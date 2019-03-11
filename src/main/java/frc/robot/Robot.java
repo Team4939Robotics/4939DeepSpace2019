@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -34,14 +35,15 @@ public class Robot extends TimedRobot {
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static BallIntakeSubsystem BI = new BallIntakeSubsystem();
   public static ElevatorSubsystem elevator = new ElevatorSubsystem();
+  public static ClimbSubsystem climber = new ClimbSubsystem();
   public static OI m_oi;
-  public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
+  // public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
   private static boolean prevPressed = false;
+  Compressor c = new Compressor(0);
 
   //Create Network Table Objects
-  NetworkTableEntry x;
-  NetworkTableEntry y;
-  NetworkTableEntry isDetected;
+  NetworkTableEntry findDistance;
+  NetworkTableEntry tapeFound;
 
 
   //Preferences prefs;
@@ -56,6 +58,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    c.setClosedLoopControl(true);
     
     // NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
     // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
@@ -72,9 +75,9 @@ public class Robot extends TimedRobot {
       // Set up and populate the networkTable
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("SmartDashboard");
-    x = table.getEntry("X");
-    y = table.getEntry("Y");
-    isDetected= table.getEntry("isDetected");
+    findDistance = table.getEntry("findDistance");
+    tapeFound= table.getEntry("tapeFound");
+
 
   }
 
@@ -161,19 +164,24 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
     SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
     SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
-    SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
-    SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
+    // SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
+    // SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
     SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
 
     if(m_oi.leftTrigger() && !prevPressed){
-      new ManualElevatorDown().start();
+      new ElevatorStage2().start();
+ //     new ManualElevatorDown().start();
       prevPressed = true;
     }
     else if (m_oi.rightTrigger() && !prevPressed){
-      new ManualElevatorUp().start();
+      new ElevatorStage3().start();
+ //    new ManualElevatorUp().start();
       prevPressed = true;
     }
     else if (!m_oi.rightTrigger() && !m_oi.leftTrigger()){
+ //    new StopElevator().start();
+        //comment this line out when testing PIDs
+      
       prevPressed = false;
     }
   }

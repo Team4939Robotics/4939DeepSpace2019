@@ -16,11 +16,11 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class HatchSubsystem extends Subsystem {
-  public DoubleSolenoid grabberPiston = new DoubleSolenoid(RobotMap.GRABBER_PISTON_A.value, RobotMap.GRABBER_PISTON_B.value);
-  public DoubleSolenoid pusherPiston = new DoubleSolenoid(RobotMap.PUSHER_PISTON_A.value, RobotMap.PUSHER_PISTON_B.value);
+  public DoubleSolenoid grabberPiston = new DoubleSolenoid(0,RobotMap.GRABBER_PISTON_A.value, RobotMap.GRABBER_PISTON_B.value);
+  public DoubleSolenoid pusherPiston = new DoubleSolenoid(0,RobotMap.PUSHER_PISTON_A.value, RobotMap.PUSHER_PISTON_B.value);
 
-  public boolean grabbed = false;
-  public boolean pushed = false;
+  private boolean grabbed = false;
+  private boolean pushed = false;
 
   //Grabber Methods
   public void openGrabber(){

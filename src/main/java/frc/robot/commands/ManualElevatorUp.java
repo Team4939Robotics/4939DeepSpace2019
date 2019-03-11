@@ -25,6 +25,15 @@ public class ManualElevatorUp extends Command {
   @Override
   protected void execute() {
     Robot.elevator.runElevator(-1);
+    if(Robot.elevator.getEncoderDist()>44&& Robot.elevator.getEncoderDist()<54){
+      Robot.elevator.runElevator(-0.3);
+    }
+    else if(Robot.elevator.getEncoderDist()>0&& Robot.elevator.getEncoderDist()<10){
+      Robot.elevator.runElevator(-0.3);
+    }
+    else{
+      Robot.elevator.runElevator(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

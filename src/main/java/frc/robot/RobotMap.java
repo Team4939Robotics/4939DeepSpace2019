@@ -27,8 +27,10 @@ public enum RobotMap {
 	//ELEVATOR_B(8),
 
 	//Ball Intake Motors
-	INTAKE_MOTOR_A(9),
-	INTAKE_MOTOR_B(10),
+	INTAKE_MOTOR_A(8),
+	// INTAKE_MOTOR_B(10),
+	INTAKE_PIVOT_A(9),
+	INTAKE_PIVOT_B(10),
 
 	//Drive Encoders
 	LEFT_DRIVE_ENCODER_A(1),
@@ -47,8 +49,23 @@ public enum RobotMap {
 	PUSHER_PISTON_A(2),
 	PUSHER_PISTON_B(3);
 
+<<<<<<< HEAD
 	//Servo Motor
 	SERVO_MOTOR(0);
+=======
+	//HOPPER_PISTON_A(4),
+	//HOPPER_PISTON_B(5),
+	HOPPER_PISTON_A(6),
+	HOPPER_PISTON_B(7),
+
+	CLIMB_FRONT_A(0),
+	CLIMB_FRONT_B(1),
+	CLIMB_BACK_A(4),
+	CLIMB_BACK_B(5),
+
+	//Servo on PWM Port
+	SERVO_MOTOR(9);
+>>>>>>> 0c6d4d29e66a04d0d51e7df7eacae8fa2e0fdb3f
 	
 	public final int value;
 	

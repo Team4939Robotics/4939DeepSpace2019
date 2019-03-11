@@ -45,9 +45,9 @@ public enum RobotMap {
 	GRABBER_PISTON_B(1),
 
 	PUSHER_PISTON_A(2),
-	PUSHER_PISTON_B(3),
+	PUSHER_PISTON_B(3);
 
-	//Servo on PWM Port
+	//Servo Motor
 	SERVO_MOTOR(0);
 	
 	public final int value;

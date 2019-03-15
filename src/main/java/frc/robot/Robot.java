@@ -42,8 +42,12 @@ public class Robot extends TimedRobot {
   Compressor c = new Compressor(0);
 
   //Create Network Table Objects
-  NetworkTableEntry findDistance;
-  NetworkTableEntry tapeFound;
+  // Set up and populate the networkTable
+  static NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  static NetworkTable table = inst.getTable("SmartDashboard");
+  
+  public static NetworkTableEntry angle = table.getEntry("Angle");
+  public static NetworkTableEntry tapeFound = table.getEntry("tapeFound");
 
 
   //Preferences prefs;
@@ -64,19 +68,16 @@ public class Robot extends TimedRobot {
     // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
     // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setResolution(160, 120);
+    // UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    // camera.setResolution(320, 320);
+
+    AxisCamera cam1 = CameraServer.getInstance().addAxisCamera("10.49.39.93");
+    // cam1.setResolution(320, 320);
 
     m_chooser.setDefaultOption("Do Nothing", new DoNothing());
     m_chooser.addOption("Sample Auto", new SampleAuto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-      // Set up and populate the networkTable
-    NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    NetworkTable table = inst.getTable("SmartDashboard");
-    findDistance = table.getEntry("findDistance");
-    tapeFound= table.getEntry("tapeFound");
 
 
   }
@@ -130,9 +131,9 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.start();
+    // }
   }
 
   /**
@@ -161,13 +162,13 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     SmartDashboard.putNumber("Accumulated angle: ", dt.angle());
-    SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
-    SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
-    SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
+    // SmartDashboard.putNumber("Yaw: ", dt.getAhrs().getYaw());
+    // SmartDashboard.putNumber("Roll: ", dt.getAhrs().getRoll());
+    // SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     // SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     // SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
     SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
-
+    SmartDashboard.putNumber("Pivot Encoder Count: ", BI.getCount());
     if(m_oi.leftTrigger() && !prevPressed){
       new ElevatorStage2().start();
  //     new ManualElevatorDown().start();

@@ -27,6 +27,9 @@ public class TurnCommand extends Command {
   @Override
   protected void initialize() {
     Robot.dt.resetGyroYaw();
+    if (Robot.dt.reverse){
+      angle *= -1;
+    }
     setTimeout(timeOut);
   }
 

@@ -26,14 +26,12 @@ public class OI {
 	//
 	// Driver Controller
 	//
-	private Button TurnLeft = new JoystickButton(DriverController, 3);
-	private Button TurnRight = new JoystickButton(DriverController, 1);
+	// private Button TurnLeft = new JoystickButton(DriverController, 3);
+	// private Button TurnRight = new JoystickButton(DriverController, 1);
 	private Button DriveReverse = new JoystickButton(DriverController, 4);
 
 	private Button HatchGrabber = new JoystickButton(DriverController, 6);
 
-	// private Trigger ElevatorStage3 = new JoystickButton(DriverController, 3);
-	// private Trigger ElevatorStage2 = new JoystickButton(DriverController, 2);
 	private Button ElevatorStage1 = new JoystickButton(DriverController, 5);
 	private Button EncoderReset = new JoystickButton(DriverController, 8);
 	
@@ -41,26 +39,28 @@ public class OI {
 	// 
 	// Operator Controller
 	// 
-	private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
-	private Button ManualElevatorDown = new JoystickButton(OperatorController, 7);
+	// private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
+	// private Button ManualElevatorDown = new JoystickButton(OperatorController, 7);
+	private Button PivotCargo = new JoystickButton(OperatorController, 8);
+	private Button PivotGround = new JoystickButton(OperatorController, 7);
+	// private Button PivotLevel1 = new JoystickButton(OperatorController, 5);
+	private Button PivotCalibrate = new JoystickButton(OperatorController, 6);
+	
+	private Button HatchPusher =  new JoystickButton(OperatorController, 2);
 
-	private Button HatchPusher =  new JoystickButton(OperatorController, 12);
-
-	//private Button FrontClimbPiston = new JoystickButton(OperatorController, 5);
-	private Button BackClimbPiston = new JoystickButton(OperatorController, 6);
+	// private Button FrontClimbPiston = new JoystickButton(OperatorController, 11);
+	private Button BackClimbPiston = new JoystickButton(DriverController, 1);
 
 	private Button BallIntake = new JoystickButton(OperatorController, 4);
-	private Button BallOuttake = new JoystickButton(OperatorController, 3);
+	// private Button BallOuttake = new JoystickButton(OperatorController, 3);
 	private Button BallFastOuttake = new JoystickButton(OperatorController, 1);
 	// private Button HopperUpDown = new JoystickButton(OperatorController, 11);
 
-	//private Button ElevatorStage2 = new JoystickButton(OperatorController,5);
-	//private Button ElevatorStage3 = new JoystickButton(OperatorController,6 );
-	//private Button ElevatorStage1 = new JoystickButton(OperatorController,9 );
 
 	public OI() {
-		TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
-		TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5));
+		// TurnLeft.whenPressed(new TurnCommand(Robot.angle.getDouble(0)*-1, 0.5, 1.5));
+		// // TurnLeft.whenPressed(new TurnCommand(-90, 0.5, 1.5));
+		// TurnRight.whenPressed(new TurnCommand(90, 0.5, 1.5));
 		DriveReverse.whenPressed(new ToggleDriveCommand());
 
 		HatchGrabber.whenPressed(new HatchGrabberCommand());
@@ -68,24 +68,27 @@ public class OI {
 
 		BallIntake.whenPressed(new PresetIntakeCommand());
 		BallIntake.whenReleased(new StopIntakeCommand());
-		BallOuttake.whenPressed(new PresetOuttakeCommand());
-		BallOuttake.whenReleased(new StopIntakeCommand());
+		// BallOuttake.whenPressed(new PresetOuttakeCommand());
+		// BallOuttake.whenReleased(new StopIntakeCommand());
 		BallFastOuttake.whenPressed(new BallFastOuttakeCommand());
 		BallFastOuttake.whenReleased(new StopIntakeCommand());
+
+		// PivotCargo.whenPressed(new PivotCargo());
+		// PivotGround.whenPressed(new PivotGround());
+		PivotCargo.whenPressed(new ManualPivotUp());
+		PivotCargo.whenReleased(new StopPivot());
+		PivotGround.whenPressed(new ManualPivotDown());
+		PivotGround.whenPressed(new StopPivot());
+		// PivotLevel1.whenPressed(new PivotLevel1());
+		
 		// HopperUpDown.whenPressed(new HopperUpDown());
-
-		// ElevatorStage3.whenActive(new ElevatorStage3());
-		// ElevatorStage2.whenActive(new ElevatorStage2());
-		//ElevatorStage1.whenPressed(new ElevatorStage1());
-		//ElevatorStage2.whenPressed(new ElevatorStage2());
-		//ElevatorStage3.whenPressed(new ElevatorStage3());
-
+		PivotCalibrate.whenPressed(new resetPivotEncoder());
 		EncoderReset.whenPressed(new resetEncoder());
 
-		ManualElevatorUp.whenPressed(new ManualElevatorUp());
-		ManualElevatorUp.whenReleased(new StopElevator());
-		ManualElevatorDown.whenPressed(new ManualElevatorDown());
-		ManualElevatorDown.whenReleased(new StopElevator());
+		// ManualElevatorUp.whenPressed(new ManualElevatorUp());
+		// ManualElevatorUp.whenReleased(new StopElevator());
+		// ManualElevatorDown.whenPressed(new ManualElevatorDown());
+		// ManualElevatorDown.whenReleased(new StopElevator());
 		ElevatorStage1.whenPressed(new ElevatorStage1());
 
 		// FrontClimbPiston.whenPressed(new ClimbFrontUpDown());
@@ -126,12 +129,19 @@ public class OI {
 			return true;
 	}
 
-	
-	public double intake() {
-		double intakeWheel = OperatorController.getRawAxis(3);
-		if(Math.abs(intakeWheel) < 0.05)
-			return 0.0;
-		else
-			return intakeWheel;
-	}
+	// public double opStick() {
+	// 	double stick = OperatorController.getRawAxis(3);
+	// 	if(Math.abs(stick) < 0.05)
+	// 		return 0.0;
+	// 	else
+	// 		return stick;
+	// }
+
+	// public double intake() {
+	// 	double intakeWheel = OperatorController.getRawAxis(3);
+	// 	if(Math.abs(intakeWheel) < 0.05)
+	// 		return 0.0;
+	// 	else
+	// 		return intakeWheel;
+	// }
 }

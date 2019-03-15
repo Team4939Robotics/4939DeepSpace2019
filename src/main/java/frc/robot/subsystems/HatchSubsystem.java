@@ -16,20 +16,20 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class HatchSubsystem extends Subsystem {
-  public DoubleSolenoid grabberPiston = new DoubleSolenoid(0,RobotMap.GRABBER_PISTON_A.value, RobotMap.GRABBER_PISTON_B.value);
-  public DoubleSolenoid pusherPiston = new DoubleSolenoid(0,RobotMap.PUSHER_PISTON_A.value, RobotMap.PUSHER_PISTON_B.value);
+  public DoubleSolenoid grabberPiston = new DoubleSolenoid(RobotMap.GRABBER_PISTON_A.value, RobotMap.GRABBER_PISTON_B.value);
+  public DoubleSolenoid pusherPiston = new DoubleSolenoid(RobotMap.PUSHER_PISTON_A.value, RobotMap.PUSHER_PISTON_B.value);
 
   private boolean grabbed = false;
   private boolean pushed = false;
 
   //Grabber Methods
   public void openGrabber(){
-    grabberPiston.set(DoubleSolenoid.Value.kForward);
+    grabberPiston.set(DoubleSolenoid.Value.kReverse);
     grabbed = true;
   }
 
   public void closeGrabber(){
-    grabberPiston.set(DoubleSolenoid.Value.kReverse);
+    grabberPiston.set(DoubleSolenoid.Value.kForward);
     grabbed = false;
   }
 
@@ -39,12 +39,12 @@ public class HatchSubsystem extends Subsystem {
 
   //Pusher Methods
   public void pushPusher(){
-    pusherPiston.set(DoubleSolenoid.Value.kForward);
+    pusherPiston.set(DoubleSolenoid.Value.kReverse);
     pushed = true;
   }
 
   public void pullPusher(){
-    pusherPiston.set(DoubleSolenoid.Value.kReverse);
+    pusherPiston.set(DoubleSolenoid.Value.kForward);
     pushed = false;
   }
   

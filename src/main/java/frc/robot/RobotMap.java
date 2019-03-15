@@ -29,8 +29,8 @@ public enum RobotMap {
 	//Ball Intake Motors
 	INTAKE_MOTOR_A(8),
 	// INTAKE_MOTOR_B(10),
-	INTAKE_PIVOT_A(9),
-	INTAKE_PIVOT_B(10),
+	INTAKE_PIVOT_A(10),
+	INTAKE_PIVOT_B(9),
 
 	//Drive Encoders
 	LEFT_DRIVE_ENCODER_A(1),
@@ -51,13 +51,13 @@ public enum RobotMap {
 
 	//HOPPER_PISTON_A(4),
 	//HOPPER_PISTON_B(5),
-	HOPPER_PISTON_A(6),
-	HOPPER_PISTON_B(7),
+	// HOPPER_PISTON_A(6),
+	// HOPPER_PISTON_B(7),
 
-	CLIMB_FRONT_A(0),
-	CLIMB_FRONT_B(1),
-	CLIMB_BACK_A(4),
-	CLIMB_BACK_B(5),
+	// CLIMB_FRONT_A(4),
+	// CLIMB_FRONT_B(5),
+	CLIMB_BACK_A(6),
+	CLIMB_BACK_B(7),
 
 	//Servo on PWM Port
 	SERVO_MOTOR(9);

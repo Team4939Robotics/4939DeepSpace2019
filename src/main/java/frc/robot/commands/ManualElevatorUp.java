@@ -24,11 +24,10 @@ public class ManualElevatorUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.runElevator(-1);
-    if(Robot.elevator.getEncoderDist()>44&& Robot.elevator.getEncoderDist()<54){
+    if(Robot.elevator.getEncoderDist() > 44 && Robot.elevator.getEncoderDist() < 54){
       Robot.elevator.runElevator(-0.3);
     }
-    else if(Robot.elevator.getEncoderDist()>0&& Robot.elevator.getEncoderDist()<10){
+    else if(Robot.elevator.getEncoderDist() > 0 && Robot.elevator.getEncoderDist() < 10){
       Robot.elevator.runElevator(-0.3);
     }
     else{

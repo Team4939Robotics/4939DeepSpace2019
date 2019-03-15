@@ -23,7 +23,7 @@ public class ElevatorStage2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorHeight(27, 1, 0.5);
+    Robot.elevator.setElevatorHeight(29, 1, 0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()

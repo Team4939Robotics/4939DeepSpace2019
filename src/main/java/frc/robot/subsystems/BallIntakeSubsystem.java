@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import frc.robot.NumberConstants;
 import frc.robot.RobotMap;
-import frc.robot.commands.BallIntakeCommand;
+// import frc.robot.commands.BallIntakeCommand;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -35,18 +35,23 @@ public class BallIntakeSubsystem extends Subsystem {
   // private boolean hopperUp = false;
   public BallIntakeSubsystem(){
     intakePivotA.setNeutralMode(NeutralMode.Brake);
+    intakePivotB.setNeutralMode(NeutralMode.Brake);
     intakePivotA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
 
     pivotPID = new PIDController(NumberConstants.pivotKP, NumberConstants.pivotKI, NumberConstants.pivotKD, NumberConstants.pivotKF);
   }
 
   public void useIntake(double speed) {
-    intakeMotorA.set(speed);
+    intakeMotorA.set(-speed);
   }
 
   public void pivotIntake(double speed){
     intakePivotA.set(speed);
-    intakePivotB.set(-speed);
+    intakePivotB.set(speed);
+  }
+
+  public void pivotToAngle(double angle, double speed, double epsilon){
+    pivotIntake(pivotPID.calcPID(angle, getEncoderPosition(), epsilon)*speed);
   }
 
   //
@@ -60,9 +65,9 @@ public class BallIntakeSubsystem extends Subsystem {
     intakePivotA.setSelectedSensorPosition(0);
   }
 
-  // public int getCount(){
-  //   return intakePivotA.getSelectedSensorPosition();
-  // }
+  public int getCount(){
+    return intakePivotA.getSelectedSensorPosition();
+  }
 
   // public void pushBall(int angle){
   //   pushServo.setAngle(angle);

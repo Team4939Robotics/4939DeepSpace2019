@@ -16,25 +16,25 @@ import frc.robot.RobotMap;
  */
 public class ClimbSubsystem extends Subsystem {
 
-  public DoubleSolenoid frontPiston = new DoubleSolenoid(1,RobotMap.CLIMB_FRONT_A.value, RobotMap.CLIMB_FRONT_B.value);
-  public DoubleSolenoid backPiston = new DoubleSolenoid(0,RobotMap.CLIMB_BACK_A.value, RobotMap.CLIMB_BACK_B.value);
+  // public DoubleSolenoid frontPiston = new DoubleSolenoid(RobotMap.CLIMB_FRONT_A.value, RobotMap.CLIMB_FRONT_B.value);
+  public DoubleSolenoid backPiston = new DoubleSolenoid(RobotMap.CLIMB_BACK_A.value, RobotMap.CLIMB_BACK_B.value);
 
-  private boolean frontUp = false;
+  // private boolean frontUp = false;
   private boolean backUp = false;
 
-  public void frontUp(){
-    frontPiston.set(DoubleSolenoid.Value.kForward);
-    frontUp = true;
-  }
+  // public void frontUp(){
+  //   frontPiston.set(DoubleSolenoid.Value.kForward);
+  //   frontUp = true;
+  // }
 
-  public void frontDown(){
-    frontPiston.set(DoubleSolenoid.Value.kReverse);
-    frontUp = false;
-  }
+  // public void frontDown(){
+  //   frontPiston.set(DoubleSolenoid.Value.kReverse);
+  //   frontUp = false;
+  // }
 
-  public boolean frontIsUp(){
-    return frontUp;
-  }
+  // public boolean frontIsUp(){
+  //   return frontUp;
+  // }
 
   public void backUp(){
     backPiston.set(DoubleSolenoid.Value.kForward);

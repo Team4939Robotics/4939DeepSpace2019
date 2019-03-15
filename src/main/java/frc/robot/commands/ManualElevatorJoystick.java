@@ -10,11 +10,9 @@
 // import edu.wpi.first.wpilibj.command.Command;
 // import frc.robot.Robot;
 
-// public class BallIntakeCommand extends Command {
-//   public BallIntakeCommand() {
-//     // Use requires() here to declare subsystem dependencies
-//     // eg. requires(chassis);
-//     requires(Robot.BI);
+// public class ManualElevatorJoystick extends Command {
+//   public ManualElevatorJoystick() {
+//     requires(Robot.elevator);
 //   }
 
 //   // Called just before this Command runs the first time
@@ -25,7 +23,7 @@
 //   // Called repeatedly when this Command is scheduled to run
 //   @Override
 //   protected void execute() {
-//     Robot.BI.useIntake(Robot.m_oi.intake());
+//     Robot.elevator.runElevator(-1*Robot.m_oi.opStick());
 //   }
 
 //   // Make this return true when this Command no longer needs to run execute()
@@ -37,13 +35,11 @@
 //   // Called once after isFinished returns true
 //   @Override
 //   protected void end() {
-//     //Robot.BI.useIntake(0);
 //   }
 
 //   // Called when another command which requires one or more of the same
 //   // subsystems is scheduled to run
 //   @Override
 //   protected void interrupted() {
-    
 //   }
 // }

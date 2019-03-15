@@ -5,39 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.TestSequence;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class StopElevator extends Command {
-  public StopElevator() {
-    requires(Robot.elevator);
+public class PivotUpTest extends Command {
+  public PivotUpTest() {
+    requires(Robot.BI);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(1.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    Robot.elevator.runElevator(0);
-    
-    // Robot.elevator.setNeutralToBrake();
+    Robot.BI.pivotToAngle(0.9, 0.5, 0.05);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.BI.pivotIntake(0);
   }
 
   // Called when another command which requires one or more of the same

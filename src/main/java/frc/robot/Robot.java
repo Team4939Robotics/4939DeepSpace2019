@@ -68,8 +68,8 @@ public class Robot extends TimedRobot {
     // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
     // NumberConstants.gyroKD = prefs.getDouble("gyroKD", 0.0);
 
-    // UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    // camera.setResolution(320, 320);
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setResolution(320, 240);
 
     AxisCamera cam1 = CameraServer.getInstance().addAxisCamera("10.49.39.93");
     // cam1.setResolution(320, 320);

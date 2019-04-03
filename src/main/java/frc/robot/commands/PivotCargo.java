@@ -23,7 +23,7 @@ public class PivotCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.BI.pivotToAngle(0.9, 0.5, 0.05);
+    Robot.BI.pivotToAngle(1, 0.5, 0.01);
   }
 
   // Make this return true when this Command no longer needs to run execute()

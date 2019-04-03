@@ -41,10 +41,10 @@ public class OI {
 	// 
 	// private Button ManualElevatorUp = new JoystickButton(OperatorController, 8);
 	// private Button ManualElevatorDown = new JoystickButton(OperatorController, 7);
-	private Button PivotCargo = new JoystickButton(OperatorController, 8);
-	private Button PivotGround = new JoystickButton(OperatorController, 7);
+	private Button PivotCargo = new JoystickButton(OperatorController, 6);
+	private Button PivotGround = new JoystickButton(OperatorController, 5);
 	// private Button PivotLevel1 = new JoystickButton(OperatorController, 5);
-	private Button PivotCalibrate = new JoystickButton(OperatorController, 6);
+	private Button PivotCalibrate = new JoystickButton(OperatorController, 8);
 	
 	private Button HatchPusher =  new JoystickButton(OperatorController, 2);
 
@@ -78,7 +78,7 @@ public class OI {
 		PivotCargo.whenPressed(new ManualPivotUp());
 		PivotCargo.whenReleased(new StopPivot());
 		PivotGround.whenPressed(new ManualPivotDown());
-		PivotGround.whenPressed(new StopPivot());
+		PivotGround.whenReleased(new StopPivot());
 		// PivotLevel1.whenPressed(new PivotLevel1());
 		
 		// HopperUpDown.whenPressed(new HopperUpDown());

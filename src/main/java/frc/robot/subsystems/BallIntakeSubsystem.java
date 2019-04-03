@@ -42,12 +42,12 @@ public class BallIntakeSubsystem extends Subsystem {
   }
 
   public void useIntake(double speed) {
-    intakeMotorA.set(-speed);
+    intakeMotorA.set(speed);
   }
 
   public void pivotIntake(double speed){
-    intakePivotA.set(speed);
-    intakePivotB.set(speed);
+    intakePivotA.set(-speed);
+    intakePivotB.set(-speed);
   }
 
   public void pivotToAngle(double angle, double speed, double epsilon){

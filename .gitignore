@@ -158,3 +158,9 @@ bin/
 
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
+src/main/java/frc/robot/Robot.java
+src/main/java/frc/robot/subsystems/BallIntakeSubsystem.java
+src/main/java/frc/robot/subsystems/ElevatorSubsystem.java
+src/main/java/frc/robot/OI.java
+src/main/java/frc/robot/NumberConstants.java
+*.java

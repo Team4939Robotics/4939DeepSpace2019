@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   // public static UltrasonicCodeTesting ultrasonic = new UltrasonicCodeTesting();
   private static boolean prevPressed = false;
-  Compressor c = new Compressor(0);
+  // Compressor c = new Compressor(0);
 
   //Create Network Table Objects
   // Set up and populate the networkTable
@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    c.setClosedLoopControl(true);
+    // c.setClosedLoopControl(true);
     
     // NumberConstants.gyroKP = prefs.getDouble("gyroKP", 0.0);
     // NumberConstants.gyroKI = prefs.getDouble("gyroKI", 0.0);
@@ -75,7 +75,6 @@ public class Robot extends TimedRobot {
     // cam1.setResolution(320, 320);
 
     m_chooser.setDefaultOption("Do Nothing", new DoNothing());
-    m_chooser.addOption("Sample Auto", new SampleAuto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
@@ -167,9 +166,9 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("Pitch: ", dt.getAhrs().getPitch());
     // SmartDashboard.putNumber("Ultrasonic Distance: ", ultrasonic.getInches());
     // SmartDashboard.putNumber("Ultrasonic Voltage: ", ultrasonic.getVoltage());
-    SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
-    SmartDashboard.putNumber("Pivot Encoder Count: ", BI.getCount());
-    if(m_oi.leftTrigger() && !prevPressed){
+    // SmartDashboard.putNumber("Elevator Height: ", elevator.getEncoderDist());
+     SmartDashboard.putNumber("Pivot Encoder Count: ", BI.getCount());
+     if(m_oi.leftTrigger() && !prevPressed){
       new ElevatorStage2().start();
  //     new ManualElevatorDown().start();
       prevPressed = true;

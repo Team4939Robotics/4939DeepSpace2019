@@ -54,7 +54,7 @@ public class NumberConstants {
 	public static double elevatorkD = 0.0;
 	public static double elevatorkF = 0.0; 
 	//intake pivot PID constants
-	public static double pivotKP = 2.0;
+	public static double pivotKP = 0.15;
 	public static double pivotKI = 0.0;
 	public static double pivotKD = 0.0;
 	public static double pivotKF = 0.0;

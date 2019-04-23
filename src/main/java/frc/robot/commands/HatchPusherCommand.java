@@ -18,28 +18,26 @@ public class HatchPusherCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(0.2);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.hatch.isPushed()){
-      Robot.hatch.pullPusher();
-    }
-    else{
       Robot.hatch.pushPusher();
-    }
+      Robot.hatch.closeGrabber();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.hatch.pullPusher();
   }
 
   // Called when another command which requires one or more of the same

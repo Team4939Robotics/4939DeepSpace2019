@@ -40,8 +40,6 @@ public class ElevatorSubsystem extends Subsystem {
   }
 
   public void setElevatorHeight(double height, double speed, double epsilon){
-    if(getEncoderDist() < 0)
-      resetEncoder();
     runElevator(elevatorPID.calcPID(height, getEncoderDist(), epsilon)*-speed);
   }
 
